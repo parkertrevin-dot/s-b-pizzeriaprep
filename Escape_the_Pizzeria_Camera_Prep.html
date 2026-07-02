@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escape the Pizzeria — Camera Prep</title>
+<style>
+:root {
+  --purple: #7c5cbf;
+  --teal: #2a9d8f;
+  --ink: #1f1f24;
+  --muted: #6b6b76;
+  --border: #e4e2ec;
+  --bg: #faf9fc;
+  --card: #ffffff;
+  --action: #444;
+  --char: #7c5cbf;
+  --shot-bg: #fff7e6;
+  --shot-border: #f0c674;
+  --props-bg: #eaf6f4;
+  --props-border: #b7e4dd;
+  --flag-bg: #fff3f0;
+  --flag-border: #f0a898;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--ink); }
+.top-bar { position: sticky; top: 0; z-index: 10; background: var(--purple); color: white; padding: 10px 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+.top-bar h1 { margin: 0 0 8px 0; font-size: 18px; }
+.nav-scroll { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
+.nav-btn { flex: 0 0 auto; background: rgba(255,255,255,0.15); color: white; border: none; border-radius: 8px; padding: 8px 12px; font-size: 13px; font-weight: 600; white-space: nowrap; }
+.nav-btn.active { background: white; color: var(--purple); }
+.content { padding: 10px; max-width: 900px; margin: 0 auto; }
+.day-section { display: none; }
+.day-section.active { display: block; }
+.day-title { font-size: 20px; margin: 6px 0 2px 0; }
+.day-meta { font-size: 13px; color: var(--muted); font-weight: 600; margin-bottom: 8px; }
+.flags-banner { background: var(--flag-bg); border: 1px solid var(--flag-border); border-radius: 10px; padding: 10px 14px; margin: 10px 0 16px 0; }
+.flags-title { font-weight: 700; font-size: 13px; margin-bottom: 6px; }
+.flags-banner ul { margin: 0; padding-left: 18px; font-size: 12.5px; color: #6b3d33; }
+.flags-banner li { margin-bottom: 6px; }
+.summary-table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 10px; overflow: hidden; font-size: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+.summary-table th { background: var(--purple); color: white; text-align: left; padding: 7px 6px; font-size: 11px; }
+.summary-table td { padding: 7px 6px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.col-scene { font-weight: 700; white-space: nowrap; }
+.tag { display: block; font-weight: 500; font-size: 10px; color: var(--muted); font-style: italic; }
+.break-row td { background: #f0f0f0; font-weight: 600; color: var(--muted); text-align: center; font-size: 11.5px; }
+.breakdown-section { margin-top: 18px; }
+.scene-block { background: var(--card); border-radius: 10px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); overflow: hidden; border: 1px solid var(--border); }
+.scene-header { background: var(--purple); color: white; padding: 8px 12px; display: flex; gap: 8px; align-items: baseline; }
+.scene-num { font-weight: 800; font-size: 13px; }
+.scene-title { font-size: 12.5px; opacity: 0.9; }
+.scene-body { display: flex; flex-direction: column; gap: 0; }
+.script-col { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+.action-line { font-style: italic; color: var(--action); font-size: 13px; margin: 6px 0; }
+.character-name { font-weight: 700; color: var(--char); font-size: 12.5px; margin: 8px 0 0 0; text-transform: uppercase; }
+.dialogue-line { font-size: 13px; margin: 2px 0 6px 0; }
+.no-script { font-size: 12px; color: var(--muted); font-style: italic; }
+.side-col { padding: 10px 12px; display: flex; flex-direction: column; gap: 10px; }
+.side-label { font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 4px; }
+.shots-section { background: var(--shot-bg); border: 1px solid var(--shot-border); border-radius: 8px; padding: 8px 10px; }
+.shot-list { margin: 0; padding-left: 16px; }
+.shot-list li { font-size: 12px; color: #6b5017; line-height: 1.5; margin-bottom: 2px; }
+.shot-note { font-size: 12px; color: #6b5017; font-style: italic; }
+.shot-scene-label { font-size: 10.5px; font-weight: 700; color: #8a6a1f; margin: 6px 0 2px 0; }
+.props-section { background: var(--props-bg); border: 1px solid var(--props-border); border-radius: 8px; padding: 8px 10px; }
+.props-list .props-group { margin-bottom: 8px; }
+.props-list .props-group:last-child { margin-bottom: 0; }
+.props-group-header { font-size: 11px; font-weight: 700; color: #1f6f63; margin-bottom: 3px; }
+.props-items { margin: 0; padding-left: 16px; }
+.props-items li { font-size: 12px; color: #1f6f63; line-height: 1.5; margin-bottom: 2px; }
+.props-list .none { font-size: 12px; color: #aaa; font-style: italic; }
+.col-shots { white-space: nowrap; font-size: 11.5px; color: #8a6a1f; font-weight: 600; }
+@media (min-width: 700px) {
+  .scene-body { flex-direction: row; }
+  .script-col { flex: 2; border-bottom: none; border-right: 1px solid var(--border); }
+  .side-col { flex: 1; min-width: 220px; }
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <h1>🍕 ESCAPE THE PIZZERIA — Camera Prep</h1>
+  <div class="nav-scroll"><button class="nav-btn active" id="nav-0" onclick="showDay(0)">July 1</button><button class="nav-btn" id="nav-1" onclick="showDay(1)">July 2</button><button class="nav-btn" id="nav-2" onclick="showDay(2)">July 3</button><button class="nav-btn" id="nav-3" onclick="showDay(3)">July 6</button><button class="nav-btn" id="nav-4" onclick="showDay(4)">July 7</button><button class="nav-btn" id="nav-5" onclick="showDay(5)">July 8</button><button class="nav-btn" id="nav-6" onclick="showDay(6)">July 9</button></div>
+</div>
+<div class="content">
+  
+    <div class="flags-banner">
+      <div class="flags-title">⚠️ Flagged for review</div>
+      <ul><li>Friday, July 3: &quot;Chameleon Dance Party!&quot; at INT. MOM HQ (5:45-6:30) is scheduled but does not match any Escape the Pizzeria scene, script, shot list, or prop entry — it appears to belong to a different production and has been excluded from the scene breakdown below. It remains flagged here since it falls within a Pizzeria shoot day.</li><li>Thursday, July 9: &quot;LIAM DOUBLE&quot; appears in the cast for Sc 22 — kept as a distinct cast entry (stunt/insert double), not merged with the main performer.</li><li>Wednesday, July 1: &quot;JUDAH DOUBLE&quot; appears in the cast for Sc 5, Sc 7, Sc 8, Sc 12, Sc 20, Sc 21, Sc 24, Sc 26 — kept as a distinct cast entry (stunt/insert double), not merged with the main performer.</li></ul>
+    </div>
+    
+  <div class="day-section active" id="day-0"><h2 class="day-title">Wednesday, July 1</h2>
+    <div class="day-summary">
+      <div class="day-meta">Crew Call 8:00 AM &middot; Makeup Call 8:30 AM</div>
+      <table class="summary-table">
+        <thead><tr>
+          <th>Scene</th><th>Location</th><th>Time</th><th>Cast</th><th>Shots</th><th>Props / Notes</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+                <td class="col-scene">Sc 5 <span class="tag">(minus Judah coverage)</span></td>
+                <td class="col-loc">INT. PIZZERIA HALLWAY</td>
+                <td class="col-time">9:00-10:00</td>
+                <td class="col-cast">Britney, Judah Double, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">8 shots</td>
+                <td class="col-props">Let&#x27;s try to get our memories back</td>
+            </tr><tr>
+                <td class="col-scene">Sc 7</td>
+                <td class="col-loc">INT. PIZZERIA HALLWAY</td>
+                <td class="col-time">10:00-10:15</td>
+                <td class="col-cast">Britney, Judah Double, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">2 shots</td>
+                <td class="col-props">Shiloh remembers what happens (filmed with Sc 5)</td>
+            </tr><tr>
+                <td class="col-scene">Sc 8</td>
+                <td class="col-loc">INT. PIZZERIA ROOM - DAY</td>
+                <td class="col-time">10:30-10:50</td>
+                <td class="col-cast">Britney, Judah Double, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">4 shots</td>
+                <td class="col-props">Pizzeria Room</td>
+            </tr><tr>
+                <td class="col-scene">Sc 12</td>
+                <td class="col-loc">INT. PIZZERIA ROOM - DAY</td>
+                <td class="col-time">10:50-11:35</td>
+                <td class="col-cast">Britney, Judah Double, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">5 shots</td>
+                <td class="col-props">Pizzeria Room</td>
+            </tr><tr>
+                <td class="col-scene">Sc 21</td>
+                <td class="col-loc">INT. HALLWAY</td>
+                <td class="col-time">11:35-12:20</td>
+                <td class="col-cast">Britney, Judah Double, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">6 shots</td>
+                <td class="col-props">Maybe you&#x27;ll be useful some day</td>
+            </tr><tr>
+                <td class="col-scene">Sc 24</td>
+                <td class="col-loc">INT. HALLWAY</td>
+                <td class="col-time">12:25-12:40</td>
+                <td class="col-cast">Britney, Judah Double, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">3 shots</td>
+                <td class="col-props">Shiloh listens in</td>
+            </tr><tr class="break-row"><td colspan="6">LUNCH 12:45-1:45</td></tr><tr>
+                <td class="col-scene">Sc 20 <span class="tag">(no Judah coverage)</span></td>
+                <td class="col-loc">INT. HALLWAY</td>
+                <td class="col-time">1:45-4:45</td>
+                <td class="col-cast">Britney, Chef Guard, Chef Guard 2, Chef Guard 3, Judah Double, Liam</td>
+                <td class="col-shots">36 shots</td>
+                <td class="col-props">Liam Fight</td>
+            </tr><tr>
+                <td class="col-scene">Sc 26</td>
+                <td class="col-loc">INT. HALLWAY</td>
+                <td class="col-time">4:45-6:25</td>
+                <td class="col-cast">2 Bg Chefs, Britney, Chef Guard, Chef Guard 2, Chef Guard 3, Judah Double, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">7 shots</td>
+                <td class="col-props">Judah dragged away</td>
+            </tr><tr>
+                <td class="col-scene">Sc 2 <span class="tag">(non-Judah coverage)</span></td>
+                <td class="col-loc">INT. PIZZERIA JAIL CELL</td>
+                <td class="col-time">6:45-7:45</td>
+                <td class="col-cast">Britney, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">They break out</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="breakdown-section">
+      
+    <div class="scene-block" id="scene-5">
+      <div class="scene-header">
+        <span class="scene-num">Sc 5</span>
+        <span class="scene-title">INT. PIZZERIA HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">They walk into yet another large hallway that is littered with full pizzas on the floor, and pizza box stacks near the walls.</p><p class="character-name">SHILOH</p><p class="dialogue-line">Don&#x27;t step on the pizzas.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Why not?</p><p class="action-line">Shiloh grabs a nearby stick and pokes one of the pizzas that explodes like a landmine. She holds up the charred shorter stick. Then does a Khaby Lame &quot;See&quot; gesture.</p><p class="character-name">BRITNEY (CONT&#x27;D)</p><p class="dialogue-line">I probably should&#x27;ve seen that coming.</p><p class="action-line">They start heading down the hall, carefully stepping over pizzas on the ground.</p><p class="character-name">LIAM</p><p class="dialogue-line">Think we&#x27;ll get our memories back?</p><p class="character-name">SHILOH</p><p class="dialogue-line">Honestly, I don&#x27;t know.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">What if we triggered our memories to come back with familiar sights, or sounds?</p><p class="character-name">SHILOH</p><p class="dialogue-line">That could work. A smell would be the strongest. But how would we-</p><p class="action-line">Judah pops in and holds up a pizza near her face.</p><p class="character-name">JUDAH</p><p class="dialogue-line">This pizza smells like feet!</p><p class="character-name">SHILOH</p><p class="dialogue-line">Judah, what the-</p><p class="action-line">She sniffs, and then recoils as she suddenly remembers:</p><p class="character-name">FLASHBACK TO:</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Gimbal</li><li>Floor Shot OTS Pizza (high-hat)</li><li>Hall Reveal OTS Shiloh</li><li>Britney/Shiloh 2-shot</li><li>Single on Pizza</li><li>Shiloh Gimbal</li><li>Phineas Gimbal</li><li>Liam Gimbal</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizzeria Hall #2</div><ul class="props-items"><li>Full pizzas on the floor</li><li>Pizza boxes stacked near wall</li><li>Stick</li><li>Stick, half charred off</li><li>Pizza Judah holds up to Shiloh&#x27;s face</li><li>Pizza rugs</li><li>Pizza box Phineas puts exploding pizza in</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-7">
+      <div class="scene-header">
+        <span class="scene-num">Sc 7</span>
+        <span class="scene-title">INT. PIZZERIA HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Shiloh comes back from the memory.</p><p class="character-name">SHILOH</p><p class="dialogue-line">They knocked us out with pizza!</p><p class="character-name">JUDAH</p><p class="dialogue-line">Betrayed by the food I love most! I think there was part of a tire in it.</p><p class="action-line">At the end of the hallway, the sound of two people about to enter their hall. Shiloh&#x27;s eyes go wide and the group quickly dips into a room.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Shiloh Gimbal</li><li>Door POV (shadows moving behind the door)</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizzeria Hall #2</div><ul class="props-items"><li>Full pizzas on the floor</li><li>Pizza boxes stacked near wall</li><li>Stick</li><li>Stick, half charred off</li><li>Pizza Judah holds up to Shiloh&#x27;s face</li><li>Pizza rugs</li><li>Pizza box Phineas puts exploding pizza in</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-8">
+      <div class="scene-header">
+        <span class="scene-num">Sc 8</span>
+        <span class="scene-title">INT. PIZZERIA ROOM - DAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">The group enters the room and shuts the door as the sound of two people enter the hall.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">(whispers to Shiloh) You ok?</p><p class="character-name">SHILOH</p><p class="dialogue-line">(whispers) Yeah. Good idea with the memory thing.</p><p class="action-line">Liam notices this interaction.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Group Coverage (3/4)</li><li>Phineas Single</li><li>Shiloh Single</li><li>Liam Reaction Single</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizzeria Room #1</div><ul class="props-items"><li>Pizzeria storage room set dec</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-12">
+      <div class="scene-header">
+        <span class="scene-num">Sc 12</span>
+        <span class="scene-title">INT. PIZZERIA ROOM</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Smash cut to the group stacking furniture and tables under the vent to create a stairway up to it.</p><p class="action-line">Phineas puts down a chair then hangs back and asks Britney.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">(re: Liam) Who is that guy?</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Shiloh&#x27;s new friend with the muscles?</p><p class="character-name">PHINEAS</p><p class="dialogue-line">Muscles? I mean... he&#x27;s fine.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Yeah, he&#x27;s fine.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">Who&#x27;s side are you on!? Where&#x27;d you even meet him?</p><p class="action-line">They finish creating the obby up to the vent. Shiloh and Liam start up it as Phineas looks at her.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">We met him on a battle raelo. He goes on missions with her now.</p><p class="action-line">Britney heads up the obby as Phineas joins.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Flat Obby Wide</li><li>Britney/Phineas 2-Shot</li><li>Britney Single</li><li>Phineas Single</li><li>Liam POV of Shiloh and Phineas</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizzeria Room #2 (Obby leading up to vent)</div><ul class="props-items"><li>Stacking furniture</li><li>Tables</li><li>Vent</li><li>Chairs</li><li>Obby leading up to vent</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-21">
+      <div class="scene-header">
+        <span class="scene-num">Sc 21</span>
+        <span class="scene-title">INT. HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">They head down the hall.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">I haven&#x27;t seen a single computer system for me to hack into to get us a map!</p><p class="character-name">LIAM</p><p class="dialogue-line">Maybe you&#x27;ll be useful one day. (alt: Some problems need to be solved in the real world)</p><p class="character-name">SHILOH</p><p class="dialogue-line">There are no maps. We keep moving through until we find the exit.</p><p class="action-line">They dead end into swinging French doors that head into a loud bustling kitchen.</p><p class="character-name">SHILOH (CONT&#x27;D)</p><p class="dialogue-line">We&#x27;re going to have to sneak through.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">(to Liam) Sneaking means we move quietly.</p><p class="character-name">LIAM</p><p class="dialogue-line">Funny from the guy who wanted to hack a pizza parlor.</p><p class="character-name">(MORE)</p><p class="character-name">LIAM (CONT&#x27;D)</p><p class="dialogue-line">(alt (very mocking): Oh wow! Thanks!)</p><p class="character-name">SHILOH</p><p class="dialogue-line">Let&#x27;s go.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Gimbal Group</li><li>Gimbal Shiloh</li><li>Gimbal Liam</li><li>Gimbal Phineas</li><li>Group Coverage</li><li>Side Wide as they enter</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Hallway #6 w/ swinging french doors</div><ul class="props-items"><li>Swinging french doors leading into Kitchen set #2</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-24">
+      <div class="scene-header">
+        <span class="scene-num">Sc 24</span>
+        <span class="scene-title">INT. HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">This section is decorated differently than before. It&#x27;s more alien with some odd tech. Shiloh pauses at a door to listen in on a frustrated chef.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Wide</li><li>Shiloh Medium at the door</li><li>Gimbal Shiloh Single</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Hallway #7</div><ul class="props-items"><li>Alien tech</li><li>Different posters w/ chefs looking like the monsters</li><li>Doorway leading into different room</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-20">
+      <div class="scene-header">
+        <span class="scene-num">Sc 20</span>
+        <span class="scene-title">INT. HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Britney falls from the ceiling having come from the vents. She looks up to Judah in the vent.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">If you call me a big back, I will slap you.</p><p class="character-name">JUDAH</p><p class="dialogue-line">(in vent) I didn&#x27;t say a thing.</p><p class="action-line">A guard similar to the first one they encountered, walks through the halls. He turns to Britney with a glare. Britney turns over to see him.</p><p class="action-line">He approaches Britney, raising his pizza slicer weapon over her head, about to slice Britney. Britney grimaces, ready to be pizza&#x27;d.</p><p class="action-line">End Act I</p><p class="action-line">Suddenly, Liam jumps down in between Britney and the chef guard. He grabs the handle of the pizza as the guard brings it down and throws it to the side. The guard pulls out a giant dough roller and swings it at Liam. Liam dodges it while stepping back. The guard over extends with a swing and Liam uses that to step out from in front of him. Another chef rounds the hall, having heard the commotion, and charges at Liam. Liam grabs nearby flour on a roller cart with pizza making ingredients on it and tosses it at the charging chef. The chef comes to a halt, brining his hands to his face and eyes, now covered in flour. The other guard chef is now charging behind Liam, he turns and grabs him just in time, and tosses him off camera. The chef gets tossed onto the other chef and they both go down. They&#x27;re now an unconscious pile. Shiloh hops down out of the vent. Then Phineas. Shiloh rushes over to Britney.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">I got the next guy.</p><p class="action-line">Liam looks to him.</p><p class="character-name">LIAM</p><p class="dialogue-line">Yeah, sure you do.</p><p class="character-name">SHILOH</p><p class="dialogue-line">(to Liam) Thank you.</p><p class="action-line">He nods.</p><p class="character-name">SHILOH (CONT&#x27;D)</p><p class="dialogue-line">Knocking people out is not their end goal with these pizzas. And they&#x27;re HORRIBLE at pretending to be chefs. Who are these people?</p><p class="character-name">PHINEAS</p><p class="dialogue-line">I don&#x27;t think they eat pizzas where they&#x27;re-</p><p class="character-name">LIAM</p><p class="dialogue-line">They clearly have bad intentions.</p><p class="character-name">LIAM (CONT&#x27;D)</p><p class="dialogue-line">I&#x27;m pretty sure she was talking to me, bud.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">Says you.</p><p class="action-line">Britney leans over to Judah.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Aren&#x27;t you going to say something?</p><p class="character-name">JUDAH</p><p class="dialogue-line">No, no, no...I think they&#x27;re going to take each other out. My work is done for me.</p><p class="character-name">SHILOH</p><p class="dialogue-line">We need to find a way out of here.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">She&#x27;s right.</p><p class="character-name">LIAM</p><p class="dialogue-line">I have all my memories back, but I can&#x27;t remember why you were even AT the pizza restaurant. Who invited you?</p><p class="action-line">Phineas turns to Britney who waves guiltily.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">I thought it&#x27;d be interesting to have you two meet.</p><p class="character-name">SHILOH</p><p class="dialogue-line">Britney!</p><p class="action-line">They all look up as a loud announcement goes over the speaker.</p><p class="character-name">LOUDSPEAKER CHEF (V.O.)</p><p class="dialogue-line">Ahem. Wee, wee croissant!</p><p class="action-line">Another voice joins the first.</p><p class="character-name">LOUDSPEAKER CHEF 2 (V.O.)</p><p class="dialogue-line">That&#x27;s French! All chefs are Italian!</p><p class="character-name">LOUDSPEAKER CHEF (V.O.)</p><p class="dialogue-line">(in a French accent) This is Italian.</p><p class="action-line">The second chef takes the mic.</p><p class="character-name">LOUDSPEAKER CHEF 2 (V.O.)</p><p class="dialogue-line">The prisoners we took have escaped! ALL chefs are to be on look out. Our guards have been released to find them! Red alert!</p><p class="action-line">Uh oh.</p><p class="character-name">JUDAH</p><p class="dialogue-line">Well that just made everything harder.</p><p class="character-name">SHILOH</p><p class="dialogue-line">Let&#x27;s go!</p><p class="action-line">They exit.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Wide</li><li>Britney Single on the ground</li><li>Guard Turning Coverage</li><li>Judah in Vent Coverage</li><li>Britney Coverage</li><li>Guard Single as he raises his weapon</li><li>Britney/Guard 2-Shot</li><li>Liam/Guard 2-Shot</li><li>Gimbal Guard</li><li>Gimbal Liam</li><li>Gimbal Guard Face Single</li><li>Gimbal Guard Slicer Single</li><li>Gimbal Guard</li><li>Gimbal Liam</li><li>Liam/Guard 2-Shot</li><li>Gimbal Guard as he charges</li><li>Gimbal Liam Medium as he hurls flour</li><li>Gimbal Guard Single blinded by flour</li><li>Gimbal Chef runs at Liam</li><li>Gimbal Liam/Chef 2-Shot</li><li>Gimbal Chefs get knocked out</li><li>Gimbal Chefs unconscious on the ground</li><li>Wide for vent hop down (need plate)</li><li>Phineas/Liam 2-Shot</li><li>Liam Single</li><li>Phineas Single</li><li>Group Coverage</li><li>Shiloh Single facing Liam</li><li>Shiloh Single #2</li><li>Liam Single to Shiloh</li><li>Phineas Single</li><li>Britney/Judah 2-Shot</li><li>Britney Single</li><li>Judah Single</li><li>Shiloh Single to Britney</li><li>Britney Single for “I thought it&#x27;d be interesting…”</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Hallway #5</div><ul class="props-items"><li>Ceiling panel on the ground?</li><li>Giant pizza slicer weapon</li><li>Giant pizza roller weapon</li><li>Crash pad</li><li>Roller cart w/ pizza making ingredients</li><li>Flour / Flour covered on one of the chefs</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-26">
+      <div class="scene-header">
+        <span class="scene-num">Sc 26</span>
+        <span class="scene-title">INT. HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Shiloh says to her group in a whisper.</p><p class="character-name">SHILOH</p><p class="dialogue-line">They&#x27;re trying to perfect a recipe.</p><p class="action-line">They keep going down the hall as Shiloh turns to the group in a walk and talk.</p><p class="character-name">LIAM</p><p class="dialogue-line">What are they trying to have it do?</p><p class="character-name">SHILOH</p><p class="dialogue-line">I think it&#x27;ll be bad when they get it right.</p><p class="character-name">CHEF GUARD (V.O.)</p><p class="dialogue-line">Over there!</p><p class="action-line">A group of Chef Guards round the corner. The group turns to run away from them when three more come from the opposite direction and grab Judah, who was in the rear. Judah is then grabbing onto the floor, as he screams and is comedically drug backwards, making a funny floor squeaking noise. Liam turns and opens the door for Britney, Shiloh then shoves Phineas into the side room, and shuts the door.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Gimbal Wide</li><li>Liam Single</li><li>Shiloh Single</li><li>Group Wide</li><li>Judah Single</li><li>Judah Medium as he is drug backwards</li><li>Liam Single as he opens the door hero-style</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Hallway #7</div><ul class="props-items"><li>Alien tech</li><li>Different posters w/ chefs looking like the monsters</li><li>Doorway leading into different room</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-2">
+      <div class="scene-header">
+        <span class="scene-num">Sc 2</span>
+        <span class="scene-title">INT. PIZZERIA JAIL CELL</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">A shoe lace gets pulled out from a boot belonging to Britney. She passes it to Shiloh as does Judah an orange one, Phineas his laces, Liam his. Shiloh ties them all together to her boot laces connected to a single boot of hers. Creating a shoe on a long shoe-string rope. She takes it and twirls it like a stone in a sling-shot and tosses it outside the jail cell. It lands behind a big stack of pizza boxes on the ground. She pulls it back towards her, bringing back the stack of pizzas with it. The security camera turret pans over the pizza boxes. Shiloh stops from pulling the pizza boxes and it freezes as the camera and its red laser passes over them, now still ...it pans back to the other side of the room and they spring back into action.</p><p class="action-line">Britney and Phineas start rapidly opening and searching through the pizza boxes. Shiloh tosses the shoe back out and pulls the wooden cheese stool into their cell. Liam grabs it and breaks a leg off. Britney finds a doughie pizza and hands it to Liam who wraps it around two of the bars and uses the leg from the stool to create turn-kit. He twists his turn-kit until the two bars are together, creating a big enough gap for Judah who slips out!</p><p class="action-line">The security camera is turning back towards Judah as he runs for the table! He grabs the pizza slicer on the table, hops up on it and slices the exposed wire of the camera with the pizza slicer. It shuts down. The others slip out of the jail cell. Liam heads for the door as Judah rips the camera off of the wall and tosses it to Liam who catches it and uses it as a hammer to bang the two hinges off of the door, which Shiloh opens. They all pause, happy with their successfully executed plan. They look out at where they are. Judah is obscured from being behind Phineas and Liam.</p><p class="character-name">JUDAH</p><p class="dialogue-line">I can&#x27;t see, I can&#x27;t see!</p><p class="action-line">He pushes through them, looks up at their height. He exits off and comes back in with an extra stool from the corner. He puts it down to get over their shoulders.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Jail Cell</div><ul class="props-items"><li>Pizza boxes all around</li><li>Framed Pizza art</li><li>Cheese wheel wooden stool x 2 (one in corner of the room)</li><li>Table covered in Pizza boxes</li><li>Chair</li><li>Security camera w/ turret attached to it w/ red laser cone</li><li>Pizza that is Rubber</li><li>Long shoe string rope with orange &amp; regular shoe laces</li><li>Big stack of Pizza boxes</li><li>Dough to hold two chair legs together</li><li>Stool to create turn-kit</li><li>Pizza slicer</li><li>Exposed wires on camera</li><li>Camera turned into hammer to knock door off hinges</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+    </div><div class="day-section" id="day-1"><h2 class="day-title">Thursday, July 2</h2>
+    <div class="day-summary">
+      <div class="day-meta">Crew Call 8:00 AM</div>
+      <table class="summary-table">
+        <thead><tr>
+          <th>Scene</th><th>Location</th><th>Time</th><th>Cast</th><th>Shots</th><th>Props / Notes</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+                <td class="col-scene">Sc 10</td>
+                <td class="col-loc">INT. PIZZERIA ROOM</td>
+                <td class="col-time">9:00-9:20</td>
+                <td class="col-cast">Britney, Judah, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">3 shots</td>
+                <td class="col-props">Pizzeria Room</td>
+            </tr><tr>
+                <td class="col-scene">Sc 11</td>
+                <td class="col-loc">INT. PIZZERIA HALLWAY</td>
+                <td class="col-time">9:30-10:20</td>
+                <td class="col-cast">Britney, Judah, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">9 shots</td>
+                <td class="col-props">Is the door a push or pull</td>
+            </tr><tr>
+                <td class="col-scene">Sc 13</td>
+                <td class="col-loc">INT. VENT</td>
+                <td class="col-time">10:35-11:00</td>
+                <td class="col-cast">Britney, Judah, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Group walks through vent</td>
+            </tr><tr>
+                <td class="col-scene">Sc 17</td>
+                <td class="col-loc">INT. VENT</td>
+                <td class="col-time">11:00-11:05</td>
+                <td class="col-cast">Britney, Judah, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Jaw drop reaction</td>
+            </tr><tr>
+                <td class="col-scene">Sc 19 &amp; Sc 20 <span class="tag">(Judah coverage)</span></td>
+                <td class="col-loc">INT. VENT</td>
+                <td class="col-time">11:05-11:55</td>
+                <td class="col-cast">Britney, Judah, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">36 shots</td>
+                <td class="col-props">Creaks and breaks!</td>
+            </tr><tr>
+                <td class="col-scene">Sc 20 <span class="tag">(Judah coverage)</span></td>
+                <td class="col-loc">INT. HALLWAY</td>
+                <td class="col-time">12:10-1:10</td>
+                <td class="col-cast">Britney, Judah, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">36 shots</td>
+                <td class="col-props">Judah coverage</td>
+            </tr><tr class="break-row"><td colspan="6">LUNCH 1:15-2:00 (at studio)</td></tr><tr>
+                <td class="col-scene">Sc 23</td>
+                <td class="col-loc">INT. OFFICE ENTRANCE</td>
+                <td class="col-time">2:00-2:40</td>
+                <td class="col-cast">Britney, Judah, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">5 shots</td>
+                <td class="col-props">Why aren&#x27;t two guys fighting over me?</td>
+            </tr><tr class="break-row"><td colspan="6">TRANSITION -- — Transition to Elliston Place Soda Shop (someone already there starting load-in with second set of cameras)</td></tr><tr>
+                <td class="col-scene">Sc 6</td>
+                <td class="col-loc">INT. PIZZERIA RESTAURANT - DAY - FLASHBACK</td>
+                <td class="col-time">5:00-5:30</td>
+                <td class="col-cast">Britney, Judah, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Flashback</td>
+            </tr><tr>
+                <td class="col-scene">Sc 14</td>
+                <td class="col-loc">INT. PIZZERIA RESTAURANT - DAY - FLASHBACK</td>
+                <td class="col-time">5:30-6:30</td>
+                <td class="col-cast">Waiting Staff, Waitress, Britney, Judah, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Group just sat down, mop water</td>
+            </tr><tr>
+                <td class="col-scene">Sc 55</td>
+                <td class="col-loc">INT. PIZZERIA RESTAURANT - DAY - FLASHBACK</td>
+                <td class="col-time">6:30-7:10</td>
+                <td class="col-cast">Britney, Elijah, Josiah, Judah, Liam, Micah, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Two boys is TOO MANY</td>
+            </tr><tr>
+                <td class="col-scene">Sc 56</td>
+                <td class="col-loc">INT. PIZZERIA RESTAURANT - DAY - FLASHBACK</td>
+                <td class="col-time">7:10-8:00</td>
+                <td class="col-cast">All</td>
+                <td class="col-shots">1 shot</td>
+                <td class="col-props">Dance Party!</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="breakdown-section">
+      
+    <div class="scene-block" id="scene-10">
+      <div class="scene-header">
+        <span class="scene-num">Sc 10</span>
+        <span class="scene-title">INT. PIZZERIA ROOM</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Judah gasps silently at this info as Shiloh processes it. The chefs chatter goes silent as they&#x27;ve left the hall.</p><p class="character-name">SHILOH</p><p class="dialogue-line">That&#x27;s us! Why is a pizza place capturing people to test their pizza on?</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Is that what happened to that scary chef we saw? He ate their bad pizza?</p><p class="character-name">SHILOH</p><p class="dialogue-line">If that&#x27;s what happened to him, what do they want the pizza to do?!</p><p class="character-name">JUDAH</p><p class="dialogue-line">What kind of lawn chair?</p><p class="action-line">They all stare at each other freaked out for a beat then..</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Group Coverage x2 (3/4, Flat)</li><li>Shiloh Single</li><li>Britney Single</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizzeria Room #1</div><ul class="props-items"><li>Pizzeria storage room set dec</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-11">
+      <div class="scene-header">
+        <span class="scene-num">Sc 11</span>
+        <span class="scene-title">INT. PIZZERIA HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">The group enters back into the hallway and now walks down it stealthily, but with a new urgency.</p><p class="character-name">SHILOH</p><p class="dialogue-line">We need to find an exit.</p><p class="character-name">JUDAH</p><p class="dialogue-line">I would not look good with red eyes.</p><p class="character-name">LIAM</p><p class="dialogue-line">The chefs will notice we&#x27;re gone from our cell soon. We need to avoid detection.</p><p class="action-line">Judah comes to the door to the next hall, he tries it.</p><p class="character-name">JUDAH</p><p class="dialogue-line">It&#x27;s locked. (then) Hang on, maybe it&#x27;s a push.</p><p class="action-line">He pushes it.</p><p class="character-name">JUDAH (CONT&#x27;D)</p><p class="dialogue-line">Nope, I was wrong it&#x27;s a pull.</p><p class="action-line">He tries pulling it again.</p><p class="character-name">JUDAH (CONT&#x27;D)</p><p class="dialogue-line">Nevermind, it&#x27;s locked. (alt: joke goes on while Shiloh looks around)</p><p class="action-line">Shiloh looks around the hall.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">What do we do?</p><p class="action-line">Liam follows her as she goes to the T in the hall and looks down into a large room. In the corner is a vent.</p><p class="character-name">SHILOH</p><p class="dialogue-line">We travel by vent.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Flat Funny</li><li>Flat Funny</li><li>Shiloh Single (Pan + track) (opt. 1)</li><li>Britney Single (opt. 1)</li><li>Liam Single (opt. 1)</li><li>Group Coverage (opt. 2)</li><li>Shiloh Single as she turns around (opt. 2)</li><li>Flat group coverage (opt. 2)</li><li>Vent Coverage in corner</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizzeria Hall #3</div><ul class="props-items"><li>Carts / extra set dec</li><li>Door</li><li>Vent</li><li>Doorway looking into room #2 w/ furniture that will be stacked</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-13">
+      <div class="scene-header">
+        <span class="scene-num">Sc 13</span>
+        <span class="scene-title">INT. VENT</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Shiloh leads the way with Liam behind her, then Judah and Britney with Phineas in the rear.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Seriously Judah, why are you dressed like a pizza?!</p><p class="action-line">Shiloh hears this and then squints hard as she:</p><p class="action-line">FLASH BACK TO:</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">INT. Vent (GS?)</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizzeria Vent</div><ul class="props-items"><li>Green screen or Blue screen</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-17">
+      <div class="scene-header">
+        <span class="scene-num">Sc 17</span>
+        <span class="scene-title">INT. VENT</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Judah, Britney, and Shiloh are all making a &quot;jaw drop&quot; reaction.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">INT. Vent (GS?)</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizzeria Vent</div><ul class="props-items"><li>Green screen or Blue screen</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-19">
+      <div class="scene-header">
+        <span class="scene-num">Sc 19</span>
+        <span class="scene-title">INT. VENT</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Shiloh is shocked.</p><p class="character-name">SHILOH</p><p class="dialogue-line">They&#x27;re not chefs at all...it&#x27;s all an act. Why are they faking being chefs to make HORRIBLE pizza?? And who&#x27;s that head chef that&#x27;s commanding them? Is he the one behind all of this?</p><p class="character-name">JUDAH</p><p class="dialogue-line">(feeling bad for them) They just want to make good pizza.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Judah! No! Don&#x27;t start sympathizing for them. They literally kidnapped us!</p><p class="action-line">They keep traveling through the vents.</p><p class="character-name">JUDAH</p><p class="dialogue-line">We should help teach them to make good pizza.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Judah!</p><p class="action-line">The vent creaks then breaks under Britney!</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">INT. Vent (GS?)</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizzeria Vent</div><ul class="props-items"><li>Green screen or Blue screen</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-20">
+      <div class="scene-header">
+        <span class="scene-num">Sc 20</span>
+        <span class="scene-title">INT. HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Britney falls from the ceiling having come from the vents. She looks up to Judah in the vent.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">If you call me a big back, I will slap you.</p><p class="character-name">JUDAH</p><p class="dialogue-line">(in vent) I didn&#x27;t say a thing.</p><p class="action-line">A guard similar to the first one they encountered, walks through the halls. He turns to Britney with a glare. Britney turns over to see him.</p><p class="action-line">He approaches Britney, raising his pizza slicer weapon over her head, about to slice Britney. Britney grimaces, ready to be pizza&#x27;d.</p><p class="action-line">End Act I</p><p class="action-line">Suddenly, Liam jumps down in between Britney and the chef guard. He grabs the handle of the pizza as the guard brings it down and throws it to the side. The guard pulls out a giant dough roller and swings it at Liam. Liam dodges it while stepping back. The guard over extends with a swing and Liam uses that to step out from in front of him. Another chef rounds the hall, having heard the commotion, and charges at Liam. Liam grabs nearby flour on a roller cart with pizza making ingredients on it and tosses it at the charging chef. The chef comes to a halt, brining his hands to his face and eyes, now covered in flour. The other guard chef is now charging behind Liam, he turns and grabs him just in time, and tosses him off camera. The chef gets tossed onto the other chef and they both go down. They&#x27;re now an unconscious pile. Shiloh hops down out of the vent. Then Phineas. Shiloh rushes over to Britney.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">I got the next guy.</p><p class="action-line">Liam looks to him.</p><p class="character-name">LIAM</p><p class="dialogue-line">Yeah, sure you do.</p><p class="character-name">SHILOH</p><p class="dialogue-line">(to Liam) Thank you.</p><p class="action-line">He nods.</p><p class="character-name">SHILOH (CONT&#x27;D)</p><p class="dialogue-line">Knocking people out is not their end goal with these pizzas. And they&#x27;re HORRIBLE at pretending to be chefs. Who are these people?</p><p class="character-name">PHINEAS</p><p class="dialogue-line">I don&#x27;t think they eat pizzas where they&#x27;re-</p><p class="character-name">LIAM</p><p class="dialogue-line">They clearly have bad intentions.</p><p class="character-name">LIAM (CONT&#x27;D)</p><p class="dialogue-line">I&#x27;m pretty sure she was talking to me, bud.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">Says you.</p><p class="action-line">Britney leans over to Judah.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Aren&#x27;t you going to say something?</p><p class="character-name">JUDAH</p><p class="dialogue-line">No, no, no...I think they&#x27;re going to take each other out. My work is done for me.</p><p class="character-name">SHILOH</p><p class="dialogue-line">We need to find a way out of here.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">She&#x27;s right.</p><p class="character-name">LIAM</p><p class="dialogue-line">I have all my memories back, but I can&#x27;t remember why you were even AT the pizza restaurant. Who invited you?</p><p class="action-line">Phineas turns to Britney who waves guiltily.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">I thought it&#x27;d be interesting to have you two meet.</p><p class="character-name">SHILOH</p><p class="dialogue-line">Britney!</p><p class="action-line">They all look up as a loud announcement goes over the speaker.</p><p class="character-name">LOUDSPEAKER CHEF (V.O.)</p><p class="dialogue-line">Ahem. Wee, wee croissant!</p><p class="action-line">Another voice joins the first.</p><p class="character-name">LOUDSPEAKER CHEF 2 (V.O.)</p><p class="dialogue-line">That&#x27;s French! All chefs are Italian!</p><p class="character-name">LOUDSPEAKER CHEF (V.O.)</p><p class="dialogue-line">(in a French accent) This is Italian.</p><p class="action-line">The second chef takes the mic.</p><p class="character-name">LOUDSPEAKER CHEF 2 (V.O.)</p><p class="dialogue-line">The prisoners we took have escaped! ALL chefs are to be on look out. Our guards have been released to find them! Red alert!</p><p class="action-line">Uh oh.</p><p class="character-name">JUDAH</p><p class="dialogue-line">Well that just made everything harder.</p><p class="character-name">SHILOH</p><p class="dialogue-line">Let&#x27;s go!</p><p class="action-line">They exit.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Wide</li><li>Britney Single on the ground</li><li>Guard Turning Coverage</li><li>Judah in Vent Coverage</li><li>Britney Coverage</li><li>Guard Single as he raises his weapon</li><li>Britney/Guard 2-Shot</li><li>Liam/Guard 2-Shot</li><li>Gimbal Guard</li><li>Gimbal Liam</li><li>Gimbal Guard Face Single</li><li>Gimbal Guard Slicer Single</li><li>Gimbal Guard</li><li>Gimbal Liam</li><li>Liam/Guard 2-Shot</li><li>Gimbal Guard as he charges</li><li>Gimbal Liam Medium as he hurls flour</li><li>Gimbal Guard Single blinded by flour</li><li>Gimbal Chef runs at Liam</li><li>Gimbal Liam/Chef 2-Shot</li><li>Gimbal Chefs get knocked out</li><li>Gimbal Chefs unconscious on the ground</li><li>Wide for vent hop down (need plate)</li><li>Phineas/Liam 2-Shot</li><li>Liam Single</li><li>Phineas Single</li><li>Group Coverage</li><li>Shiloh Single facing Liam</li><li>Shiloh Single #2</li><li>Liam Single to Shiloh</li><li>Phineas Single</li><li>Britney/Judah 2-Shot</li><li>Britney Single</li><li>Judah Single</li><li>Shiloh Single to Britney</li><li>Britney Single for “I thought it&#x27;d be interesting…”</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Hallway #5</div><ul class="props-items"><li>Ceiling panel on the ground?</li><li>Giant pizza slicer weapon</li><li>Giant pizza roller weapon</li><li>Crash pad</li><li>Roller cart w/ pizza making ingredients</li><li>Flour / Flour covered on one of the chefs</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-20">
+      <div class="scene-header">
+        <span class="scene-num">Sc 20</span>
+        <span class="scene-title">INT. HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Britney falls from the ceiling having come from the vents. She looks up to Judah in the vent.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">If you call me a big back, I will slap you.</p><p class="character-name">JUDAH</p><p class="dialogue-line">(in vent) I didn&#x27;t say a thing.</p><p class="action-line">A guard similar to the first one they encountered, walks through the halls. He turns to Britney with a glare. Britney turns over to see him.</p><p class="action-line">He approaches Britney, raising his pizza slicer weapon over her head, about to slice Britney. Britney grimaces, ready to be pizza&#x27;d.</p><p class="action-line">End Act I</p><p class="action-line">Suddenly, Liam jumps down in between Britney and the chef guard. He grabs the handle of the pizza as the guard brings it down and throws it to the side. The guard pulls out a giant dough roller and swings it at Liam. Liam dodges it while stepping back. The guard over extends with a swing and Liam uses that to step out from in front of him. Another chef rounds the hall, having heard the commotion, and charges at Liam. Liam grabs nearby flour on a roller cart with pizza making ingredients on it and tosses it at the charging chef. The chef comes to a halt, brining his hands to his face and eyes, now covered in flour. The other guard chef is now charging behind Liam, he turns and grabs him just in time, and tosses him off camera. The chef gets tossed onto the other chef and they both go down. They&#x27;re now an unconscious pile. Shiloh hops down out of the vent. Then Phineas. Shiloh rushes over to Britney.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">I got the next guy.</p><p class="action-line">Liam looks to him.</p><p class="character-name">LIAM</p><p class="dialogue-line">Yeah, sure you do.</p><p class="character-name">SHILOH</p><p class="dialogue-line">(to Liam) Thank you.</p><p class="action-line">He nods.</p><p class="character-name">SHILOH (CONT&#x27;D)</p><p class="dialogue-line">Knocking people out is not their end goal with these pizzas. And they&#x27;re HORRIBLE at pretending to be chefs. Who are these people?</p><p class="character-name">PHINEAS</p><p class="dialogue-line">I don&#x27;t think they eat pizzas where they&#x27;re-</p><p class="character-name">LIAM</p><p class="dialogue-line">They clearly have bad intentions.</p><p class="character-name">LIAM (CONT&#x27;D)</p><p class="dialogue-line">I&#x27;m pretty sure she was talking to me, bud.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">Says you.</p><p class="action-line">Britney leans over to Judah.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Aren&#x27;t you going to say something?</p><p class="character-name">JUDAH</p><p class="dialogue-line">No, no, no...I think they&#x27;re going to take each other out. My work is done for me.</p><p class="character-name">SHILOH</p><p class="dialogue-line">We need to find a way out of here.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">She&#x27;s right.</p><p class="character-name">LIAM</p><p class="dialogue-line">I have all my memories back, but I can&#x27;t remember why you were even AT the pizza restaurant. Who invited you?</p><p class="action-line">Phineas turns to Britney who waves guiltily.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">I thought it&#x27;d be interesting to have you two meet.</p><p class="character-name">SHILOH</p><p class="dialogue-line">Britney!</p><p class="action-line">They all look up as a loud announcement goes over the speaker.</p><p class="character-name">LOUDSPEAKER CHEF (V.O.)</p><p class="dialogue-line">Ahem. Wee, wee croissant!</p><p class="action-line">Another voice joins the first.</p><p class="character-name">LOUDSPEAKER CHEF 2 (V.O.)</p><p class="dialogue-line">That&#x27;s French! All chefs are Italian!</p><p class="character-name">LOUDSPEAKER CHEF (V.O.)</p><p class="dialogue-line">(in a French accent) This is Italian.</p><p class="action-line">The second chef takes the mic.</p><p class="character-name">LOUDSPEAKER CHEF 2 (V.O.)</p><p class="dialogue-line">The prisoners we took have escaped! ALL chefs are to be on look out. Our guards have been released to find them! Red alert!</p><p class="action-line">Uh oh.</p><p class="character-name">JUDAH</p><p class="dialogue-line">Well that just made everything harder.</p><p class="character-name">SHILOH</p><p class="dialogue-line">Let&#x27;s go!</p><p class="action-line">They exit.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Wide</li><li>Britney Single on the ground</li><li>Guard Turning Coverage</li><li>Judah in Vent Coverage</li><li>Britney Coverage</li><li>Guard Single as he raises his weapon</li><li>Britney/Guard 2-Shot</li><li>Liam/Guard 2-Shot</li><li>Gimbal Guard</li><li>Gimbal Liam</li><li>Gimbal Guard Face Single</li><li>Gimbal Guard Slicer Single</li><li>Gimbal Guard</li><li>Gimbal Liam</li><li>Liam/Guard 2-Shot</li><li>Gimbal Guard as he charges</li><li>Gimbal Liam Medium as he hurls flour</li><li>Gimbal Guard Single blinded by flour</li><li>Gimbal Chef runs at Liam</li><li>Gimbal Liam/Chef 2-Shot</li><li>Gimbal Chefs get knocked out</li><li>Gimbal Chefs unconscious on the ground</li><li>Wide for vent hop down (need plate)</li><li>Phineas/Liam 2-Shot</li><li>Liam Single</li><li>Phineas Single</li><li>Group Coverage</li><li>Shiloh Single facing Liam</li><li>Shiloh Single #2</li><li>Liam Single to Shiloh</li><li>Phineas Single</li><li>Britney/Judah 2-Shot</li><li>Britney Single</li><li>Judah Single</li><li>Shiloh Single to Britney</li><li>Britney Single for “I thought it&#x27;d be interesting…”</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Hallway #5</div><ul class="props-items"><li>Ceiling panel on the ground?</li><li>Giant pizza slicer weapon</li><li>Giant pizza roller weapon</li><li>Crash pad</li><li>Roller cart w/ pizza making ingredients</li><li>Flour / Flour covered on one of the chefs</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-23">
+      <div class="scene-header">
+        <span class="scene-num">Sc 23</span>
+        <span class="scene-title">INT. OFFICE ENTRANCE</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">In a red room themed pepperoni, the group looks around. There doesn&#x27;t appear to be a door.</p><p class="character-name">JUDAH</p><p class="dialogue-line">No exit?!</p><p class="action-line">Shiloh sees a large painting of a chef with an impossibly large mustache. She walks up to it and pulls it off to reveal a doorway out.</p><p class="character-name">PHINEAS LIAM</p><p class="action-line">Genius. Great job.</p><p class="action-line">They look to each other, annoyed that this is happening. Then both look off with an eye roll.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">(to Judah) Why don&#x27;t I have two guys fighting over me?</p><p class="character-name">JUDAH</p><p class="dialogue-line">Do you want the full list or just the top five reasons?</p><p class="action-line">They go through the secret door.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Wide Coverage</li><li>2-Shot or Group Medium</li><li>Shiloh Single</li><li>Phineas/Liam 2-Shot</li><li>Britney/Judah 2-Shot</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Office Entrance Room #2</div><ul class="props-items"><li>Red room themed pepperoni</li><li>Large painting of a chef with an impossibly large mustache covering hidden doorway</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-6">
+      <div class="scene-header">
+        <span class="scene-num">Sc 6</span>
+        <span class="scene-title">INT. PIZZA RESTAURANT - DAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Shiloh, Judah, Britney, Liam and Phineas all sit in a classic pizza parlor at a table. They laugh at something as they all dish pizza from it just having been placed on the table. Everyone takes a bite of their pizza. Judah realizes something is off.</p><p class="character-name">JUDAH</p><p class="dialogue-line">Does this pizza taste like stinky feet? (Alt: This is NOT pizza.)</p><p class="character-name">BRITNEY</p><p class="dialogue-line">How do you know what that tastes li-</p><p class="action-line">All five of them pass out, face first into their plates synchronized to a comedic effect.</p><p class="action-line">End flash back:</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizza Restaurant</div><ul class="props-items"><li>Classic pizza parlor tables</li><li>Pizza stand</li><li>Pizza</li><li>Plates</li><li>Cups</li><li>Mop bucket</li><li>Pizzeria flier</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-14">
+      <div class="scene-header">
+        <span class="scene-num">Sc 14</span>
+        <span class="scene-title">INT. PIZZA RESTAURANT</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Our group of five back at the restaurant, this time having just sat down.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Why are you dressed like a pizza?!</p><p class="character-name">JUDAH</p><p class="dialogue-line">BECAUSE...it&#x27;s a pizza party with free pizza!</p><p class="action-line">He holds up a flier he received.</p><p class="character-name">JUDAH (CONT&#x27;D)</p><p class="dialogue-line">That&#x27;s why I wanted to come here after we finished our mission. It&#x27;s free!</p><p class="action-line">Judah looks over at the waiting staff who is waiting in the corner, face first to the wall like a kid in time-out.</p><p class="character-name">JUDAH (CONT&#x27;D)</p><p class="dialogue-line">Um, excuse me?</p><p class="action-line">She turns around with a big smile.</p><p class="character-name">JUDAH (CONT&#x27;D)</p><p class="dialogue-line">Can we get some waters?</p><p class="character-name">WAITRESS</p><p class="dialogue-line">Of course!</p><p class="action-line">She runs over happily and grabs Judah&#x27;s cup and scoops it into the mop bucket by her and places it full of mop water in front of Judah.</p><p class="character-name">WAITRESS (CONT&#x27;D)</p><p class="dialogue-line">(pleased with herself) There you go!</p><p class="action-line">End flashback:</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">INT. Pizza Restaurant (on-location)</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizza Restaurant</div><ul class="props-items"><li>Classic pizza parlor tables</li><li>Pizza stand</li><li>Pizza</li><li>Plates</li><li>Cups</li><li>Mop bucket</li><li>Pizzeria flier</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-55">
+      <div class="scene-header">
+        <span class="scene-num">Sc 55</span>
+        <span class="scene-title">INT. PIZZA RESTAURANT</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Phineas, Liam, Judah, Britney, Shiloh, Micah, Josiah, and Elijah all get a pizza party in the restaurant, as candy desert pizzas are served. Josiah, Micah and Elijah stand arms crossed in front of Britney.</p><p class="character-name">ELIJAH</p><p class="dialogue-line">Having ONE boy around Shiloh is bad enough, but TWO boys near her is TWO TOO many!</p><p class="character-name">JOSIAH</p><p class="dialogue-line">YEAH.</p><p class="action-line">Liam walks in next to Britney.</p><p class="character-name">LIAM</p><p class="dialogue-line">Whoa, guys. Don&#x27;t be too harsh on her.</p><p class="action-line">Beat.</p><p class="character-name">LIAM (CONT&#x27;D)</p><p class="dialogue-line">(to Britney) They are right though, we should keep it just me.</p><p class="action-line">The brothers erupt at him.</p><p class="character-name">MICAH</p><p class="dialogue-line">You stay out of this!</p><p class="character-name">ELIJAH</p><p class="dialogue-line">Where is my taser?! Where is it? Where is it?</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizza Restaurant (final)</div><ul class="props-items"><li>Pizza party set dec</li><li>Multiple desert pizzas</li><li>Pizza parlor decor</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-56">
+      <div class="scene-header">
+        <span class="scene-num">Sc 56</span>
+        <span class="scene-title">INT. PIZZA RESTAURANT</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Dance party!</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Group Wide</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizza Restaurant (final)</div><ul class="props-items"><li>Pizza party set dec</li><li>Multiple desert pizzas</li><li>Pizza parlor decor</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+    </div><div class="day-section" id="day-2"><h2 class="day-title">Friday, July 3</h2>
+    <div class="day-summary">
+      <div class="day-meta">Crew Call 8:00 AM &middot; Makeup Call 8:00 AM</div>
+      <table class="summary-table">
+        <thead><tr>
+          <th>Scene</th><th>Location</th><th>Time</th><th>Cast</th><th>Shots</th><th>Props / Notes</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+                <td class="col-scene">Sc 1</td>
+                <td class="col-loc">INT. PIZZERIA JAIL CELL</td>
+                <td class="col-time">9:00-12:15</td>
+                <td class="col-cast">Britney, Chef Guard, Judah, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">23 shots</td>
+                <td class="col-props">They wake up in Pizza Jail</td>
+            </tr><tr>
+                <td class="col-scene">Sc 2 <span class="tag">(Judah coverage)</span></td>
+                <td class="col-loc">INT. PIZZERIA JAIL CELL</td>
+                <td class="col-time">12:15-1:15</td>
+                <td class="col-cast">Britney, Judah, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">They break out</td>
+            </tr><tr class="break-row"><td colspan="6">LUNCH 1:15-2:15</td></tr><tr>
+                <td class="col-scene">Sc 28</td>
+                <td class="col-loc">INT. HALLWAY</td>
+                <td class="col-time">2:30-3:05</td>
+                <td class="col-cast">Chef Guard, Chef Guard 2, Judah, Liam</td>
+                <td class="col-shots">3 shots</td>
+                <td class="col-props">Judah and Liam tied up, fed pizza</td>
+            </tr><tr>
+                <td class="col-scene">Sc 3</td>
+                <td class="col-loc">INT. PIZZERIA HALL</td>
+                <td class="col-time">3:05-4:05</td>
+                <td class="col-cast">Britney, Chef Guard, Judah, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">9 shots</td>
+                <td class="col-props">They encounter guard in the hallway</td>
+            </tr><tr>
+                <td class="col-scene">Sc 4</td>
+                <td class="col-loc">INT. PIZZERIA LARGE HALLWAY</td>
+                <td class="col-time">4:05-4:40</td>
+                <td class="col-cast">Britney, Chef Guard, Judah, Liam, Phineas, Shiloh</td>
+                <td class="col-shots">1 shot</td>
+                <td class="col-props">They sneak past guard</td>
+            </tr><tr>
+                <td class="col-scene">Sc 39 <span class="tag">(Judah coverage)</span></td>
+                <td class="col-loc">INT. PIZZERIA LARGE HALLWAY</td>
+                <td class="col-time">4:45-5:30</td>
+                <td class="col-cast">Chef Guards, Enthusiastic Chef 1, Judah, Liam, Skeptical Chef</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Liam and Judah coverage</td>
+            </tr><tr class="break-row"><td colspan="6">⚠️ 5:45-6:30 — Chameleon Dance Party! — different production, not included in breakdown <span class="tag">(other production — see flag below)</span></td></tr><tr class="break-row"><td colspan="6">LIAM HARD OUT 7:00</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="breakdown-section">
+      
+    <div class="scene-block" id="scene-1">
+      <div class="scene-header">
+        <span class="scene-num">Sc 1</span>
+        <span class="scene-title">INT. PIZZERIA JAIL CELL - DAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Wide of a prison room with pizza boxes all around a single jail cell. The place looks how you&#x27;d imagine an outlandish version of Pizza Hut offices would be. There&#x27;s a pizza clock on the wall, framed pizza art, a cheese wheel wooden stool sits by the table covered in pizza boxes. Inside the jail cell, SHILOH, JUDAH, BRITNEY, PHINEAS, and LIAM are all locked inside, passed out all in orange jumpsuits (Liam and Phineas in the back, hard to see). They come to. Shiloh and Britney slowly stand up.</p><p class="action-line">Shiloh takes in where they are.</p><p class="character-name">SHILOH</p><p class="dialogue-line">Where are we?</p><p class="action-line">She clocks the decor. Britney joins Shiloh. They see a large guard, CHEF GUARD, sitting on a chair, back to them, in a chef&#x27;s outfit.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Hey, Chef Big Boyardee</p><p class="action-line">He turns around and the girls see he has red glowing eyes. He smiles revealing pointy teeth.</p><p class="character-name">CHEF GUARD</p><p class="dialogue-line">Oh good, pizza time!</p><p class="action-line">He exits. Britney and Shiloh gasp in sync.</p><p class="character-name">SHILOH</p><p class="dialogue-line">Is he getting pizza?</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Are WE the pizza?!</p><p class="action-line">Judah stands up, in a full pizza outfit.</p><p class="character-name">JUDAH</p><p class="dialogue-line">I&#x27;M the pizza! Aaaaaa!!!</p><p class="action-line">Judah panics.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Why are you dressed like a pizza?!</p><p class="character-name">JUDAH</p><p class="dialogue-line">I&#x27;ve achieved my final form. (alt: I don&#x27;t know but if they ask me to model for the menu I&#x27;m saying yes.)</p><p class="action-line">Shiloh looks alarmed.</p><p class="character-name">SHILOH</p><p class="dialogue-line">I have no memory.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Neither do I.</p><p class="action-line">The three of them look to each other.</p><p class="character-name">SHILOH</p><p class="dialogue-line">(to others) It&#x27;s about 24 hours that are gone?</p><p class="action-line">They nod.</p><p class="character-name">SHILOH (CONT&#x27;D)</p><p class="dialogue-line">What is going on here?</p><p class="character-name">JUDAH</p><p class="dialogue-line">Maybe it&#x27;s not so bad?</p><p class="action-line">While he talks, Phineas and Liam wake up and stand on either side of Shiloh. Judah turns and sees them both. He full high- pitch screams.</p><p class="character-name">JUDAH (CONT&#x27;D)</p><p class="dialogue-line">Aaaaaaa!!! Never mind! It&#x27;s bad! What are they doing here??</p><p class="character-name">BRITNEY</p><p class="dialogue-line">I just said we don&#x27;t remember!</p><p class="character-name">SHILOH</p><p class="dialogue-line">That door is going to be locked.</p><p class="action-line">Liam and Phineas both go to answer her.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">The lock appears to be very pick-</p><p class="character-name">LIAM</p><p class="dialogue-line">If I get something like a mallet I cou-</p><p class="action-line">They both notice the other is answering her and look to each other.</p><p class="character-name">LIAM (CONT&#x27;D)</p><p class="dialogue-line">Do I know you?</p><p class="character-name">PHINEAS</p><p class="dialogue-line">I have no idea.</p><p class="action-line">Shiloh notices a security camera with a turret under it scanning the room, casting a red laser cone as it looks.</p><p class="character-name">SHILOH</p><p class="dialogue-line">There&#x27;s a laser turret attached to that.</p><p class="action-line">Judah has grabbed a pizza box he could reach outside their cell and pulls it in. He opens it up and tries to rip a piece off. The whole thing is rubber.</p><p class="character-name">JUDAH</p><p class="dialogue-line">This pizza is terrible.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">It&#x27;s rubber.</p><p class="action-line">Shiloh takes the pizza box from Judah and tosses it in front of the security camera. It laser shoots it into smithereens. Their jaws drop.</p><p class="character-name">LIAM</p><p class="dialogue-line">That&#x27;s gonna be a problem.</p><p class="character-name">SHILOH</p><p class="dialogue-line">We have to escape this pizzeria.</p><p class="action-line">Beat.</p><p class="character-name">JUDAH</p><p class="dialogue-line">If I had a nickel for every time I had to escape a pizzeria, I&#x27;d have two nickels, which isn&#x27;t a lot, but it&#x27;s weird it happened twice. (Alt: Before Big Chef Boyardee comes back hungry.) You&#x27;d have three nickels.</p><p class="action-line">End Hook:</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>2 Options for Cold Open — Option 1: Flat Sticks Wide</li><li>2 Options for Cold Open — Option 2: Gimbal Pan of the Jail Cell Room</li><li>Flat Shiloh/Britney/Judah 3-Shot</li><li>Shiloh Single</li><li>Britney Single</li><li>Medium Group POV Guy on Stool</li><li>“Pizza time” Close-Up on Guy</li><li>Judah Single</li><li>Flat Wide for Judah&#x27;s scream after Shiloh and 2 Boys Move to other Side of Cell</li><li>Shiloh/Liam/Phineas 3-Shot</li><li>Shiloh Single</li><li>Shiloh POV of gun turret</li><li>Shiloh POV of locked door</li><li>Shiloh POV of stacked pizza boxes</li><li>Jail Cell Wide after Judah has crossed for pizza</li><li>Judah Medium of him eating pizza</li><li>Britney Single</li><li>Flat Wide of Shiloh tossing pizza box across frame (profile of cell)</li><li>Insert of pizza exploding in the sky</li><li>Insert of the turret (turret is high on wall)</li><li>Liam Single</li><li>Liam Single</li><li>Shiloh Single</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Jail Cell</div><ul class="props-items"><li>Pizza boxes all around</li><li>Framed Pizza art</li><li>Cheese wheel wooden stool x 2 (one in corner of the room)</li><li>Table covered in Pizza boxes</li><li>Chair</li><li>Security camera w/ turret attached to it w/ red laser cone</li><li>Pizza that is Rubber</li><li>Long shoe string rope with orange &amp; regular shoe laces</li><li>Big stack of Pizza boxes</li><li>Dough to hold two chair legs together</li><li>Stool to create turn-kit</li><li>Pizza slicer</li><li>Exposed wires on camera</li><li>Camera turned into hammer to knock door off hinges</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-2">
+      <div class="scene-header">
+        <span class="scene-num">Sc 2</span>
+        <span class="scene-title">INT. PIZZERIA JAIL CELL</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">A shoe lace gets pulled out from a boot belonging to Britney. She passes it to Shiloh as does Judah an orange one, Phineas his laces, Liam his. Shiloh ties them all together to her boot laces connected to a single boot of hers. Creating a shoe on a long shoe-string rope. She takes it and twirls it like a stone in a sling-shot and tosses it outside the jail cell. It lands behind a big stack of pizza boxes on the ground. She pulls it back towards her, bringing back the stack of pizzas with it. The security camera turret pans over the pizza boxes. Shiloh stops from pulling the pizza boxes and it freezes as the camera and its red laser passes over them, now still ...it pans back to the other side of the room and they spring back into action.</p><p class="action-line">Britney and Phineas start rapidly opening and searching through the pizza boxes. Shiloh tosses the shoe back out and pulls the wooden cheese stool into their cell. Liam grabs it and breaks a leg off. Britney finds a doughie pizza and hands it to Liam who wraps it around two of the bars and uses the leg from the stool to create turn-kit. He twists his turn-kit until the two bars are together, creating a big enough gap for Judah who slips out!</p><p class="action-line">The security camera is turning back towards Judah as he runs for the table! He grabs the pizza slicer on the table, hops up on it and slices the exposed wire of the camera with the pizza slicer. It shuts down. The others slip out of the jail cell. Liam heads for the door as Judah rips the camera off of the wall and tosses it to Liam who catches it and uses it as a hammer to bang the two hinges off of the door, which Shiloh opens. They all pause, happy with their successfully executed plan. They look out at where they are. Judah is obscured from being behind Phineas and Liam.</p><p class="character-name">JUDAH</p><p class="dialogue-line">I can&#x27;t see, I can&#x27;t see!</p><p class="action-line">He pushes through them, looks up at their height. He exits off and comes back in with an extra stool from the corner. He puts it down to get over their shoulders.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Jail Cell</div><ul class="props-items"><li>Pizza boxes all around</li><li>Framed Pizza art</li><li>Cheese wheel wooden stool x 2 (one in corner of the room)</li><li>Table covered in Pizza boxes</li><li>Chair</li><li>Security camera w/ turret attached to it w/ red laser cone</li><li>Pizza that is Rubber</li><li>Long shoe string rope with orange &amp; regular shoe laces</li><li>Big stack of Pizza boxes</li><li>Dough to hold two chair legs together</li><li>Stool to create turn-kit</li><li>Pizza slicer</li><li>Exposed wires on camera</li><li>Camera turned into hammer to knock door off hinges</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-28">
+      <div class="scene-header">
+        <span class="scene-num">Sc 28</span>
+        <span class="scene-title">INT. HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">The guards have Judah and Liam tied up to chairs. They bring a pizza around to Liam and shove it to his face chloroforming style. They go to do it to Judah but he pipes up.</p><p class="character-name">JUDAH</p><p class="dialogue-line">I&#x27;ll just eat it.</p><p class="action-line">He takes a bite for them.</p><p class="character-name">JUDAH (CONT&#x27;D)</p><p class="dialogue-line">Mmmm....not bad. Not great but I see the visi-</p><p class="action-line">He passes out.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Wide Coverage</li><li>Judah Single</li><li>Liam Single</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Hallway #8</div><ul class="props-items"><li>Judah &amp; Liam tied up to chairs</li><li>Rope</li><li>Pizza box</li><li>Pizza</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-3">
+      <div class="scene-header">
+        <span class="scene-num">Sc 3</span>
+        <span class="scene-title">INT. PIZZERIA HALL</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">They exit into a small hall, their shoes now on.</p><p class="character-name">LIAM</p><p class="dialogue-line">Does this place have guards?</p><p class="action-line">They come to a corner: A large 12 ft by 100 ft hallway.</p><p class="character-name">JUDAH</p><p class="dialogue-line">I think they wanted me to model for their menu.</p><p class="action-line">The group pokes their heads out. At the end of it, a large man dressed as a Chef is facing the other way.</p><p class="character-name">JUDAH (CONT&#x27;D)</p><p class="dialogue-line">(star struck) Is that Gordon Ramsey?</p><p class="action-line">He turns around and we see he has red glowing eyes and pointy teeth as he snarls. He holds a large weapon that is the height of a spear, but is actually a large pizza cutter. The group quickly dips back around the corner.</p><p class="character-name">JUDAH (CONT&#x27;D)</p><p class="dialogue-line">Aaa, it&#x27;s Guy Ferrari!</p><p class="character-name">LIAM</p><p class="dialogue-line">What was that guy?</p><p class="character-name">SHILOH</p><p class="dialogue-line">I don&#x27;t know.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Is he the chef??</p><p class="character-name">JUDAH</p><p class="dialogue-line">That explains the terrible pizza.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Why&#x27;d they capture US?</p><p class="character-name">SHILOH</p><p class="dialogue-line">I don&#x27;t know. But we&#x27;re going to need to sneak past him to get out of here.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Gimbal w Liam and Judah</li><li>Full Hall Shot (Cheat hall, gs/bs?)</li><li>Group Coverage</li><li>Chef Coverage from End of Hall</li><li>Chef Coverage for their lines</li><li>Group Coverage</li><li>Shiloh Single</li><li>Liam Single</li><li>Britney Single</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizzeria Hall #1</div><ul class="props-items"><li>Chef w/ large pizza cutter weapon</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-4">
+      <div class="scene-header">
+        <span class="scene-num">Sc 4</span>
+        <span class="scene-title">INT. PIZZERIA LARGE HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">The chef guard walks on his patrol, when he passes the hall the group quickly sneaks behind him and makes it into one of the rooms right before he turns around to head back the other way.</p><p class="action-line">Once he passes them, they exit that room and make it past to the hall.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Hall Wide as Chef leaves and Group crosses back and forth Scooby-Doo style</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizzeria Hall #1</div><ul class="props-items"><li>Chef w/ large pizza cutter weapon</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-39">
+      <div class="scene-header">
+        <span class="scene-num">Sc 39</span>
+        <span class="scene-title">INT. HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Phineas and Shiloh walk along, pushing a pizza cart with pizza boxes on it. As Britney joins.</p><p class="character-name">SHILOH</p><p class="dialogue-line">I have an idea. Go with me.</p><p class="action-line">They approach a chef.</p><p class="character-name">SHILOH (CONT&#x27;D)</p><p class="dialogue-line">Hello. We are the waiting staff assigned to deliver pizzas to the prisoners but this girl (points to Britney who waves) Forgot where we&#x27;re supposed to go. Can you tell me where they&#x27;re being kept?</p><p class="character-name">SKEPTICAL CHEF</p><p class="dialogue-line">Prisoners? There are no more prisoners.</p><p class="action-line">This alarms Shiloh, but she hides it.</p><p class="character-name">SHILOH</p><p class="dialogue-line">(covering, turns to Britney) You got our orders wrong too! You always do this!</p><p class="character-name">BRITNEY</p><p class="dialogue-line">I&#x27;m sorry!</p><p class="character-name">SKEPTICAL CHEF</p><p class="dialogue-line">You waiters are terrible at your jobs! This is why the Head Chef is replacing you!</p><p class="character-name">SHILOH</p><p class="dialogue-line">My apologies.</p><p class="action-line">He gives them a suspicious look and leaves.</p><p class="character-name">SHILOH (CONT&#x27;D)</p><p class="dialogue-line">There&#x27;s a head chef that&#x27;s in charge. I bet he&#x27;s the mastermind behind all this.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Is it the chef in the red hat that we&#x27;ve been seeing?</p><p class="character-name">SHILOH</p><p class="dialogue-line">I don&#x27;t think so.</p><p class="action-line">Just then, a hurried chef comes running through. As he runs by he hurriedly tells them.</p><p class="character-name">ENTHUSIASTIC CHEF 1</p><p class="dialogue-line">Hurry! The Head Chef has called for everyone to meet in the main hall for an announcement! We&#x27;ve figured out the recipe! We can start the final phase!</p><p class="action-line">He continues on.</p><p class="character-name">SHILOH</p><p class="dialogue-line">(to the others) The recipe? What does that mean the pizza&#x27;s going to do?</p><p class="action-line">He continues on, when through another door, the Chef that just left comes back with a whole group.</p><p class="character-name">SKEPTICAL CHEF</p><p class="dialogue-line">There! Those are the imposters. Get them!</p><p class="action-line">The group turns to them, busted. Out steps Judah and Liam, now dressed in chefs outfits. Judah has a mustache on.</p><p class="character-name">JUDAH/LIAM</p><p class="dialogue-line">Yes, sir.</p><p class="action-line">The two charge.</p><p class="character-name">SHILOH</p><p class="dialogue-line">Mind control...</p><p class="action-line">Liam chases.</p><p class="character-name">SHILOH (CONT&#x27;D)</p><p class="dialogue-line">Run!!</p><p class="action-line">End Act III</p><p class="action-line">Judah lingers behind with the other chefs.</p><p class="character-name">JUDAH</p><p class="dialogue-line">(with an accent) Get ze girl!</p><p class="character-name">CHEF 3</p><p class="dialogue-line">Wait, we didn&#x27;t tell you to use an accent...</p><p class="character-name">JUDAH</p><p class="dialogue-line">It is a side affect of a mustache being on my face.</p><p class="action-line">They stare at him.</p><p class="character-name">JUDAH (CONT&#x27;D)</p><p class="dialogue-line">It&#x27;s a medical condition. I can&#x27;t explain it.</p><p class="character-name">CHEF GUARD</p><p class="dialogue-line">Are all of the mind controlled humans going to be like this?</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">INT. Hallway</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Hallway #13</div><ul class="props-items"><li>Pizza cart w/ pizza boxes</li><li>Regular pizzeria set dec</li><li>Judah &amp; Liam now dressed as chefs &amp; Judah w/ mustache</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+    </div><div class="day-section" id="day-3"><h2 class="day-title">Monday, July 6</h2>
+    <div class="day-summary">
+      <div class="day-meta">Crew Call 8:00 AM &middot; Makeup Call 8:00 AM</div>
+      <table class="summary-table">
+        <thead><tr>
+          <th>Scene</th><th>Location</th><th>Time</th><th>Cast</th><th>Shots</th><th>Props / Notes</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+                <td class="col-scene">Sc 45</td>
+                <td class="col-loc">INT. PIZZERIA LARGE HALLWAY</td>
+                <td class="col-time">9:00-9:45</td>
+                <td class="col-cast">Phineas</td>
+                <td class="col-shots">3 shots</td>
+                <td class="col-props">Phineas puts pizza in box</td>
+            </tr><tr>
+                <td class="col-scene">Sc 50</td>
+                <td class="col-loc">INT. HALLWAY</td>
+                <td class="col-time">10:00-10:15</td>
+                <td class="col-cast">Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Shiloh looks at guarded door</td>
+            </tr><tr>
+                <td class="col-scene">Sc 43</td>
+                <td class="col-loc">INT. GREEN ROOM</td>
+                <td class="col-time">10:30-1:00</td>
+                <td class="col-cast">Britney, Makeup Chef, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">The chefs are disguised Zargonites</td>
+            </tr><tr class="break-row"><td colspan="6">LUNCH 1:00-2:00</td></tr><tr>
+                <td class="col-scene">Sc 29</td>
+                <td class="col-loc">INT. HALLWAY - LOW LIGHT</td>
+                <td class="col-time">2:15-2:30</td>
+                <td class="col-cast">Britney, Demon Chef, Phineas, Shiloh</td>
+                <td class="col-shots">3 shots</td>
+                <td class="col-props">Low Light</td>
+            </tr><tr>
+                <td class="col-scene">Sc 30</td>
+                <td class="col-loc">INT. HALLWAY - LOW LIGHT</td>
+                <td class="col-time">2:30-2:55</td>
+                <td class="col-cast">Britney, Demon Chef, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">The group runs</td>
+            </tr><tr>
+                <td class="col-scene">Sc 31</td>
+                <td class="col-loc">INT. HALLWAY - LOW LIGHT</td>
+                <td class="col-time">2:55-3:40</td>
+                <td class="col-cast">Britney, Demon Chef, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Phineas you don&#x27;t need to fight!</td>
+            </tr><tr>
+                <td class="col-scene">Sc 33</td>
+                <td class="col-loc">INT. HALLWAY - LOW LIGHT</td>
+                <td class="col-time">3:40-4:05</td>
+                <td class="col-cast">Britney, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Go through the chute!</td>
+            </tr><tr>
+                <td class="col-scene">Sc 27</td>
+                <td class="col-loc">INT. ROOM - LOW LIGHT</td>
+                <td class="col-time">4:20-4:45</td>
+                <td class="col-cast">Britney, Demon Chef, Phineas, Shiloh</td>
+                <td class="col-shots">3 shots</td>
+                <td class="col-props">Where&#x27;s Liam?!</td>
+            </tr><tr>
+                <td class="col-scene">Sc 32</td>
+                <td class="col-loc">INT. ROOM - LOW LIGHT</td>
+                <td class="col-time">5:00-5:25</td>
+                <td class="col-cast">Britney, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Run through party tables</td>
+            </tr><tr class="break-row"><td colspan="6">5:30-6:30 — THUMBNAIL</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="breakdown-section">
+      
+    <div class="scene-block" id="scene-45">
+      <div class="scene-header">
+        <span class="scene-num">Sc 45</span>
+        <span class="scene-title">INT. PIZZERIA LARGE HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">The hallway with explosive pizzas sits empty. Close up on one of the pizzas on the ground as a pizza box comes into frame and very gently scoops the pizza into the box without touching it. Phineas with the pizza now in the box, exits.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Wide</li><li>Phineas Medium/Single</li><li>Insert on Pizza?</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizzeria Hall #2</div><ul class="props-items"><li>Full pizzas on the floor</li><li>Pizza boxes stacked near wall</li><li>Stick</li><li>Stick, half charred off</li><li>Pizza Judah holds up to Shiloh&#x27;s face</li><li>Pizza rugs</li><li>Pizza box Phineas puts exploding pizza in</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-50">
+      <div class="scene-header">
+        <span class="scene-num">Sc 50</span>
+        <span class="scene-title">INT. HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Shiloh looks at the guarded door. Dang it! She calculates for a second...then runs back the way she came.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Hallway #15</div><ul class="props-items"><li>Regular hallway set dec</li><li>Guarded door for head chef&#x27;s office</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-43">
+      <div class="scene-header">
+        <span class="scene-num">Sc 43</span>
+        <span class="scene-title">INT. GREEN ROOM</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">The trio quickly hides behind a clothing rack in a green room and look out at a Chef sitting at a makeup station.</p><p class="action-line">The Chef happily gets ready, humming to himself. He dabs a special powder on his face and his red markings disguise into normal looking flesh. He smiles showing his pointy teeth and swipes on a device, and they flatten to looking human. He grabs a chef hat and puts it on, hiding the elf ears on his head. Lastly, he swipes again and shuffles through four mustaches before settling on his favorite, and he happily exits to go be on camera.</p><p class="action-line">Shiloh and the group come out from behind the clothing rack.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">You mean all the normal chefs are creepy ones just wearing disguises?!</p><p class="character-name">PHINEAS</p><p class="dialogue-line">I know who they are.</p><p class="action-line">Shiloh turns to him.</p><p class="character-name">PHINEAS (CONT&#x27;D)</p><p class="dialogue-line">Names like Garnai and Zeezeek? Those are Zargonites. My dad as a raelo lord used to trade with them before their home raelo was destroyed last year.</p><p class="character-name">SHILOH</p><p class="dialogue-line">What?</p><p class="action-line">Shiloh sees something and crosses off.</p><p class="action-line">Shiloh crosses to a set of lockers, with their Zargonite names. She opens one, to see pictures pinned up on it like a highschooler, reading &quot;Home&quot;, of an alien looking planet.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">Yeah, it was really sad. Their home was beautiful. After they lost it, we thought they all disappeared.</p><p class="character-name">SHILOH</p><p class="dialogue-line">That&#x27;s why they&#x27;re here. They&#x27;re wanting a new home raelo and found this one.</p><p class="action-line">She looks out at another poster, of a hand drawn almost childish drawing of a beach with a sunset and rainbow, titled &quot;Our new home! :)&quot;, and little drawings of them as chefs happy in their new home. Along side it are peppered pictures of the raelo they&#x27;re on. A sunset, a pink beach. Also pictures of the Zargonites together having a fun time.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">But why the mind control?</p><p class="character-name">SHILOH</p><p class="dialogue-line">It&#x27;s to enslave everyone. They offer free pizzas, spread the word, and then the people are mind controlled.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Who would fall for that??</p><p class="action-line">Phineas and Shiloh look to her.</p><p class="character-name">PHINEAS SHILOH</p><p class="action-line">Everyone.</p><p class="dialogue-line">They got us.</p><p class="action-line">Free pizza.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Fair point.</p><p class="character-name">BRITNEY (CONT&#x27;D)</p><p class="dialogue-line">So... they&#x27;re just evil?</p><p class="action-line">Shiloh stares at the hand drawn picture.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">You know what I don&#x27;t see here... Mind controlled humans.</p><p class="action-line">Shiloh looks to him, sweetly liking where he&#x27;s going.</p><p class="character-name">SHILOH</p><p class="dialogue-line">And?</p><p class="character-name">PHINEAS</p><p class="dialogue-line">It bothers you too, right? I don&#x27;t see people here who want to dominate. They want a home. To cook. Zargonites are just craftsmen, not enslavers... They&#x27;re not like this.</p><p class="character-name">SHILOH</p><p class="dialogue-line">But the head chef isn&#x27;t. He&#x27;s the one giving the orders. He&#x27;s the one with the plan.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">Then we know who to find.</p><p class="action-line">End Act IV</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Green Room</div><ul class="props-items"><li>Clothing racks</li><li>Makeup station</li><li>Special powder</li><li>Powder brush</li><li>Chef hat</li><li>Chef goes from monster to human disguise</li><li>Mustache x 4</li><li>Lockers w/ their Zargonite names</li><li>Photo of alien looking planet saying “home”</li><li>Hand drawn poster w/ beach sunset &amp; rainbows</li><li>Photo w/ pink beach</li><li>Picture of Zargonites together having fun</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-29">
+      <div class="scene-header">
+        <span class="scene-num">Sc 29</span>
+        <span class="scene-title">INT. HALLWAY- LOW LIGHT</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">The red eyes glow behind the group as Shiloh turns to see that it&#x27;s a demon chef approaching them.</p><p class="character-name">SHILOH</p><p class="dialogue-line">Run!!</p><p class="action-line">They take off. The chanty song resumes, now as just a music score, now more intense.</p><p class="action-line">End Act II</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Wide</li><li>Shiloh Single</li><li>Demon Single</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Room #4</div><ul class="props-items"><li>Low lit room</li><li>Regular set dec</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-30">
+      <div class="scene-header">
+        <span class="scene-num">Sc 30</span>
+        <span class="scene-title">INT. HALLWAY- LOW LIGHT</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">The group runs through the dimly lit hall!</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">INT. Hallway Low Light (group runs)</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Hallway #9 (low light)</div><ul class="props-items"><li>Regular set dec</li><li>No props mentioned</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-31">
+      <div class="scene-header">
+        <span class="scene-num">Sc 31</span>
+        <span class="scene-title">INT. HALLWAY- LOW LIGHT</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">They round the next hall as Phineas turns to fight it. Shiloh runs back for him.</p><p class="character-name">SHILOH</p><p class="dialogue-line">No, no, no, Phineas. You don&#x27;t fight these guys.</p><p class="action-line">She grabs him and they run off.</p><p class="action-line">At the end of the hall, Shiloh closes the door to slow him down. The monster bursts down the door off its hinges and pursues.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">INT. Hallway Low Light (Phineas fights, Shiloh turns back for him)</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Hallway #10 (low light)</div><ul class="props-items"><li>Door monster bust off its hinges</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-33">
+      <div class="scene-header">
+        <span class="scene-num">Sc 33</span>
+        <span class="scene-title">INT. HALLWAY - LOW LIGHT</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">They run as Shiloh looks up and sees at the end of the hall: a chute heading down.</p><p class="character-name">SHILOH</p><p class="dialogue-line">Go through the chute!</p><p class="action-line">The group runs up to it and jumps down it. End chanty song.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">INT. Hallway Low Light (Shiloh sees chute at the end, group runs to it)</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Hallway #11</div><ul class="props-items"><li>Chute heading down</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-27">
+      <div class="scene-header">
+        <span class="scene-num">Sc 27</span>
+        <span class="scene-title">INT. ROOM - LOW LIGHT</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">29 It&#x27;s a dimly lit room. The group looks around at the dark 29 space.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">Why is it dark?</p><p class="character-name">SHILOH</p><p class="dialogue-line">Where&#x27;s Liam?!</p><p class="action-line">The glow of red eyes appear behind them. Shiloh looks up, feeling the stare of someone behind her.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Wide</li><li>Shiloh Single</li><li>Phineas Single</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Room #4</div><ul class="props-items"><li>Low lit room</li><li>Regular set dec</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-32">
+      <div class="scene-header">
+        <span class="scene-num">Sc 32</span>
+        <span class="scene-title">INT. ROOM - LOW LIGHT</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">They have to run through a bunch of pizza party tables, dodging them, but not slowing down.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">INT. Room Low Light (Group runs through tables and obstacles)</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Room #5</div><ul class="props-items"><li>Room with a bunch of pizza party tables</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+    </div><div class="day-section" id="day-4"><h2 class="day-title">Tuesday, July 7</h2>
+    <div class="day-summary">
+      <div class="day-meta">Crew Call 8:00 AM</div>
+      <table class="summary-table">
+        <thead><tr>
+          <th>Scene</th><th>Location</th><th>Time</th><th>Cast</th><th>Shots</th><th>Props / Notes</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+                <td class="col-scene">Sc 42</td>
+                <td class="col-loc">INT. BROADCAST ROOM</td>
+                <td class="col-time">9:00-10:30</td>
+                <td class="col-cast">Britney, Chef Cameraman, Commercial Chef 1, Phineas, Shiloh, Commercial Chef 2</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Commercial Chefs tape</td>
+            </tr><tr>
+                <td class="col-scene">Sc 40</td>
+                <td class="col-loc">INT. ROOM</td>
+                <td class="col-time">10:45-11:05</td>
+                <td class="col-cast">Britney, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">They run away from Liam</td>
+            </tr><tr>
+                <td class="col-scene">Sc 44</td>
+                <td class="col-loc">INT. ROOM</td>
+                <td class="col-time">11:20-12:20</td>
+                <td class="col-cast">Britney, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">We have to mind control the head chef</td>
+            </tr><tr>
+                <td class="col-scene">Sc 46</td>
+                <td class="col-loc">INT. ROOM</td>
+                <td class="col-time">12:20-12:50</td>
+                <td class="col-cast">Britney, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Shiloh and Phineas discuss plan</td>
+            </tr><tr>
+                <td class="col-scene">Sc 41</td>
+                <td class="col-loc">INT. SMALL MAZE HALL</td>
+                <td class="col-time">1:05-1:30</td>
+                <td class="col-cast">Britney, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">The recipe was mind control!</td>
+            </tr><tr class="break-row"><td colspan="6">LUNCH 1:30-2:30</td></tr><tr>
+                <td class="col-scene">Sc 37</td>
+                <td class="col-loc">INT. HALLWAY</td>
+                <td class="col-time">2:45-3:45</td>
+                <td class="col-cast">Britney, Phineas, Shiloh</td>
+                <td class="col-shots">6 shots</td>
+                <td class="col-props">Phineas picks the lock</td>
+            </tr><tr>
+                <td class="col-scene">Sc 36</td>
+                <td class="col-loc">INT. HALLWAY</td>
+                <td class="col-time">3:45-4:00</td>
+                <td class="col-cast">Britney, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Metal grating kicked</td>
+            </tr><tr>
+                <td class="col-scene">Sc 34</td>
+                <td class="col-loc">INT. LOWER LEVEL</td>
+                <td class="col-time">4:15-4:40</td>
+                <td class="col-cast">Britney, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">We have to get back up to Liam and Judah</td>
+            </tr><tr>
+                <td class="col-scene">Sc 35</td>
+                <td class="col-loc">INT. SEWER PIPE</td>
+                <td class="col-time">4:55-5:30</td>
+                <td class="col-cast">Britney, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Jumping across pipes</td>
+            </tr><tr class="break-row"><td colspan="6">5:30-6:30 — Judah Pickups (Sc 5, Sc 7, Sc 26)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="breakdown-section">
+      
+    <div class="scene-block" id="scene-42">
+      <div class="scene-header">
+        <span class="scene-num">Sc 42</span>
+        <span class="scene-title">INT. BROADCAST ROOM</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">A Red Camera is set up with a single camera guy chef behind it while two nervous chef actors in front.</p><p class="character-name">COMMERCIAL CHEF 1</p><p class="dialogue-line">Ahem. (to buddy) We got this.</p><p class="action-line">Commercial Chef 2 nods, nervous and sweaty.</p><p class="character-name">COMMERCIAL CHEF 1 (CONT&#x27;D)</p><p class="dialogue-line">Hello! I am Garnai. Do you want delicious free pizza that will not mind control you? (then) Oh! I&#x27;m not supposed to say that. (then) The most delicious pizza in the raeloverse. (then) Oh! I&#x27;m supposed to be human!</p><p class="action-line">Commercial Chef 1 starts getting on to himself.</p><p class="character-name">COMMERCIAL CHEF 1 (CONT&#x27;D)</p><p class="dialogue-line">Stupid, stupid, stupid!</p><p class="action-line">Behind them, Shiloh, Phineas, and Britney appear directly behind the two sitting commercial chefs, they stare down barrel, realizing where they are. The Chef Cameraman&#x27;s face falls as the group and him stare at each other.</p><p class="character-name">CHEF CAMERAMAN</p><p class="dialogue-line">Bosss...</p><p class="character-name">COMMERCIAL CHEF 1</p><p class="dialogue-line">Zeezeek, this is our 43rd take, do not interrupt.</p><p class="action-line">Shiloh, Phineas, and Britney begin to shuffle through slowly.</p><p class="character-name">CHEF CAMERAMAN</p><p class="dialogue-line">But Boss...</p><p class="character-name">COMMERCIAL CHEF 1</p><p class="dialogue-line">Zeezeek, so help me. This is the one, I can feel it!</p><p class="action-line">The group makes it through.</p><p class="character-name">CHEF CAMERAMAN</p><p class="dialogue-line">Ok... Recording.</p><p class="character-name">COMMERCIAL CHEF 1</p><p class="dialogue-line">Do you like mind control pizza. (flopping onto getting onto himself)</p><p class="character-name">AGH!!</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Broadcast Room</div><ul class="props-items"><li>A chef camera guy (Steve)</li><li>Broadcast set up</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-40">
+      <div class="scene-header">
+        <span class="scene-num">Sc 40</span>
+        <span class="scene-title">INT. ROOM</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Shiloh runs into the room and slams the door shut and locks it! The door shakes as Liam begins body slamming it.</p><p class="character-name">SHILOH</p><p class="dialogue-line">They&#x27;re fully mind controlled! We&#x27;ve got to save them!</p><p class="character-name">PHINEAS</p><p class="dialogue-line">He&#x27;ll be getting through that door soon!</p><p class="action-line">The three run out a side path.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Hallway (Liam coverage) &amp; Room #8</div><ul class="props-items"><li>Door slams, Shiloh locks it</li><li>Run out of a side path in room</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-44">
+      <div class="scene-header">
+        <span class="scene-num">Sc 44</span>
+        <span class="scene-title">INT. ROOM</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Britney, Shiloh and Phineas quickly sneak into a new room and close the door behind them.</p><p class="character-name">SHILOH</p><p class="dialogue-line">How do we take this head chef down?</p><p class="character-name">BRITNEY</p><p class="dialogue-line">We&#x27;ve never seen him!</p><p class="character-name">PHINEAS</p><p class="dialogue-line">We make him eat his own medicine.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">(sarcastic) Thanks, Phineas.</p><p class="character-name">SHILOH</p><p class="dialogue-line">Go on.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">Mind control him. Make him eat his own pizza.</p><p class="action-line">Shiloh likes this plan.</p><p class="character-name">SHILOH</p><p class="dialogue-line">We&#x27;ll need a commotion to draw him out.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">I have a feeling you and I can make a scene.</p><p class="action-line">Shiloh grins at him.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">What&#x27;s my job?</p><p class="character-name">SHILOH</p><p class="dialogue-line">You...be you, Britney.</p><p class="action-line">Britney gives an &quot;Aw, great.&quot; look.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Room #10</div><ul class="props-items"><li>Regular set dec</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-46">
+      <div class="scene-header">
+        <span class="scene-num">Sc 46</span>
+        <span class="scene-title">INT. PIZZERIA ROOM</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Flash back:</p><p class="action-line">Shiloh and Phineas discuss the plan.</p><p class="character-name">SHILOH</p><p class="dialogue-line">While I&#x27;m getting one of their mind- control pizzas, you&#x27;ll get one of the explosive ones from the hallway.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">I&#x27;ll then bring the pizza to you.</p><p class="character-name">SHILOH</p><p class="dialogue-line">I&#x27;ll take it to the kitchen and set it off, creating an explosion big enough that it&#x27;ll get me sent to the head chef.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">Where you&#x27;ll get him to eat his own pizza.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">You know, after hearing those two jobs, I&#x27;m quite ok just overseeing things from over here.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Room #10</div><ul class="props-items"><li>Regular set dec</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-41">
+      <div class="scene-header">
+        <span class="scene-num">Sc 41</span>
+        <span class="scene-title">INT. SMALL MAZE HALL</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">They enter a hallway that is only two people wide and wind through it as it branches off like a maze.</p><p class="character-name">SHILOH</p><p class="dialogue-line">The recipe they were searching for was mind-control pizza! That&#x27;s why they needed prisoners. Test subjects.</p><p class="action-line">It&#x27;s now only one person wide. They take another path.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Hallway #14</div><ul class="props-items"><li>Maze hallway</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-37">
+      <div class="scene-header">
+        <span class="scene-num">Sc 37</span>
+        <span class="scene-title">INT. HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">They walk down a hall when Shiloh spots what she&#x27;s looking for.</p><p class="character-name">SHILOH</p><p class="dialogue-line">There.</p><p class="action-line">Shiloh tries to open a side door. Click, click.</p><p class="character-name">SHILOH (CONT&#x27;D)</p><p class="dialogue-line">It&#x27;s locked.</p><p class="action-line">Phineas motions for her to step aside. He picks up a chair and raises it to slam the door then freezes.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">What am I doing?</p><p class="action-line">He puts the chair down and holds his hand out to Britney.</p><p class="character-name">PHINEAS (CONT&#x27;D)</p><p class="dialogue-line">Hand me your hair pin.</p><p class="action-line">Britney does. He bends it into a pick and begins picking the lock. It clicks open to reveal a large closet/small room full of clothing racks. Britney enters in.</p><p class="character-name">PHINEAS (CONT&#x27;D)</p><p class="dialogue-line">(to Shiloh) There&#x27;s more than one way to get through a locked door.</p><p class="action-line">She smiles at him.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">That hair pin was five bucks. I want it by tomorrow.</p><p class="action-line">They go through the door.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Gimbal Wide that turns into a Shiloh Single</li><li>Shiloh Single</li><li>Phineas Single</li><li>Britney/Phineas 2-Shot</li><li>Britney to Phineas Single</li><li>Phineas to Britney Single</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Hallway #12 &amp; Room #6</div><ul class="props-items"><li>A metal grating kicked out of the wall as an exit for them to crawl out of</li><li>Regular set dec</li><li>Side door</li><li>Chair</li><li>Hair pins</li><li>Large closet full of clothing racks w/ waiter outfits</li><li>(From this point on Shiloh, Phineas, &amp; Britney are in Waiter outfits)</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-36">
+      <div class="scene-header">
+        <span class="scene-num">Sc 36</span>
+        <span class="scene-title">INT. HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">A foot kicks a metal grating out of the wall. Shiloh, Phineas, and Britney come climbing out of it.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">INT. Hallway (Shiloh, Phineas, Britney come through metal grate in the wall)</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Hallway #12 &amp; Room #6</div><ul class="props-items"><li>A metal grating kicked out of the wall as an exit for them to crawl out of</li><li>Regular set dec</li><li>Side door</li><li>Chair</li><li>Hair pins</li><li>Large closet full of clothing racks w/ waiter outfits</li><li>(From this point on Shiloh, Phineas, &amp; Britney are in Waiter outfits)</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-34">
+      <div class="scene-header">
+        <span class="scene-num">Sc 34</span>
+        <span class="scene-title">INT. LOWER LEVEL</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">The three of them all slide out of the chute into a gray brick area. They look around.</p><p class="character-name">SHILOH</p><p class="dialogue-line">We have to get back up for Judah and Liam!</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Great, without Mr. Muscles?!</p><p class="character-name">PHINEAS</p><p class="dialogue-line">I can do it.</p><p class="character-name">SHILOH</p><p class="dialogue-line">You don&#x27;t need to be like Liam. Just do what you&#x27;re good at. (alt: Phineas, there&#x27;s only one you. You don&#x27;t need to be Liam. )</p><p class="action-line">Shiloh turns and looks at a large pipe in the center with little green pipes popping out of it.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">How are we even going to get back up there?</p><p class="character-name">SHILOH</p><p class="dialogue-line">With that.</p><p class="action-line">They look up at it.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">I choose option B.</p><p class="character-name">SHILOH</p><p class="dialogue-line">There is no option B</p><p class="character-name">BRITNEY</p><p class="dialogue-line">I still choose option B.</p><p class="action-line">(Alt: Then option C. Shi: There is no option c. Brit: D. Shi: There is one plan.)</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">INT. Lower Level (Shiloh and group see pipes)</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Lower Level</div><ul class="props-items"><li>Slide exit</li><li>Gray brick area</li><li>Large pipe in the center with little green pipes popping out of it</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-35">
+      <div class="scene-header">
+        <span class="scene-num">Sc 35</span>
+        <span class="scene-title">INT. SEWER PIPE</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Shiloh jumps from pipe to pipe. Phineas behind her almost falls off of one as he jumps.</p><p class="character-name">SHILOH</p><p class="dialogue-line">How you doing, Britney?</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Judah better be appreciative!!</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">INT. Sewer Pipe (GS?)</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Sewer Pipe</div><ul class="props-items"><li>Green or blue screen world?</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+    </div><div class="day-section" id="day-5"><h2 class="day-title">Wednesday, July 8</h2>
+    <div class="day-summary">
+      <div class="day-meta">Crew Call 8:00 AM &middot; Makeup Call 8:00 AM</div>
+      <table class="summary-table">
+        <thead><tr>
+          <th>Scene</th><th>Location</th><th>Time</th><th>Cast</th><th>Shots</th><th>Props / Notes</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+                <td class="col-scene">Sc 51</td>
+                <td class="col-loc">INT. SOUS CHEF OFFICE</td>
+                <td class="col-time">9:00-9:30</td>
+                <td class="col-cast">Shiloh, Sous Chef</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Shiloh asks for Sous Chef&#x27;s help</td>
+            </tr><tr>
+                <td class="col-scene">Sc 54</td>
+                <td class="col-loc">INT. HALLWAY</td>
+                <td class="col-time">9:45-10:10</td>
+                <td class="col-cast">Britney, Phineas, Shiloh, Sous Chef</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Can we stay in business?</td>
+            </tr><tr>
+                <td class="col-scene">Sc 39 <span class="tag">(minus Judah and Liam)</span></td>
+                <td class="col-loc">INT. HALLWAY</td>
+                <td class="col-time">10:10-12:10</td>
+                <td class="col-cast">Britney, Enthusiastic Chef 1, Phineas, Shiloh, Skeptical Chef</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Those are the impostors!</td>
+            </tr><tr class="break-row"><td colspan="6">LUNCH 12:10-1:10</td></tr><tr>
+                <td class="col-scene">Sc 49</td>
+                <td class="col-loc">INT. HEAD CHEF OFFICE</td>
+                <td class="col-time">1:25-1:50</td>
+                <td class="col-cast">Head Chef, Phineas</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Phineas faces off with Head Chef</td>
+            </tr><tr>
+                <td class="col-scene">Sc 52</td>
+                <td class="col-loc">INT. HEAD CHEF OFFICE</td>
+                <td class="col-time">1:50-4:50</td>
+                <td class="col-cast">Chef Guard, Chefs, Commercial Chef, Head Chef, Phineas, Shiloh, Sous Chef, Friendly Chef 1, Friendly Chef 2</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">They defeat Head Chef</td>
+            </tr><tr>
+                <td class="col-scene">Sc 48</td>
+                <td class="col-loc">INT. HALLWAY</td>
+                <td class="col-time">5:00-5:20</td>
+                <td class="col-cast">Chefs, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Chef escorts Phineas as Shiloh follows at a distance</td>
+            </tr><tr>
+                <td class="col-scene">Sc 9</td>
+                <td class="col-loc">INT. PIZZERIA HALLWAY</td>
+                <td class="col-time">5:30-5:55</td>
+                <td class="col-cast">Friendly Chef 1, Friendly Chef 2</td>
+                <td class="col-shots">3 shots</td>
+                <td class="col-props">2 chefs pass by group hiding</td>
+            </tr><tr>
+                <td class="col-scene">Sc 16</td>
+                <td class="col-loc">INT. PIZZERIA HALLWAY</td>
+                <td class="col-time">6:10-6:30</td>
+                <td class="col-cast">Head Chef</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Head Chef Video Tutorial</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="breakdown-section">
+      
+    <div class="scene-block" id="scene-51">
+      <div class="scene-header">
+        <span class="scene-num">Sc 51</span>
+        <span class="scene-title">INT. SOUS CHEF OFFICE (FROM EARLIER)</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">The Sous Chef happily writes down a recipe he&#x27;s been working on when Shiloh barges through the door. He looks up surprised.</p><p class="character-name">SHILOH</p><p class="dialogue-line">I need your help.</p><p class="character-name">SOUS CHEF</p><p class="dialogue-line">Excuse me?</p><p class="character-name">SHILOH</p><p class="dialogue-line">What the head chef is convincing you to do isn&#x27;t you.</p><p class="action-line">He looks at her surprised.</p><p class="character-name">SOUS CHEF</p><p class="dialogue-line">Head Chef has been trying to take care of us!</p><p class="character-name">SHILOH</p><p class="dialogue-line">I know. And you all made it to a new home raelo. You don&#x27;t have to take it over. You&#x27;re a peaceful people. Don&#x27;t become like the tyrants that destroyed your home.</p><p class="action-line">Sous Chef takes this in.</p><p class="character-name">SHILOH (CONT&#x27;D)</p><p class="dialogue-line">The way that the Head Chef has.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Sous Chef Office</div><ul class="props-items"><li>Pen</li><li>Multiple recipes</li><li>Table</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-54">
+      <div class="scene-header">
+        <span class="scene-num">Sc 54</span>
+        <span class="scene-title">INT. HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="character-name">BRITNEY</p><p class="dialogue-line">What you told me to do?</p><p class="character-name">SHILOH</p><p class="dialogue-line">(smiling) Yes you did.</p><p class="character-name">SOUS CHEF</p><p class="dialogue-line">Can we still stay in business? I finally found out how to make good pizza!</p><p class="action-line">He happily holds up the desert pizza.</p><p class="character-name">SOUS CHEF (CONT&#x27;D)</p><p class="dialogue-line">We&#x27;ll just make this place our new home.</p><p class="character-name">SHILOH</p><p class="dialogue-line">(smiling) I think we can make that work.</p><p class="action-line">Phineas smiles at her. She notices and smiles at Phineas.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Hallway #15 (revisit)</div><ul class="props-items"><li>Desert pizza (cookie dough crust, ice cream sauce, cotton candy topping)</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-39">
+      <div class="scene-header">
+        <span class="scene-num">Sc 39</span>
+        <span class="scene-title">INT. HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Phineas and Shiloh walk along, pushing a pizza cart with pizza boxes on it. As Britney joins.</p><p class="character-name">SHILOH</p><p class="dialogue-line">I have an idea. Go with me.</p><p class="action-line">They approach a chef.</p><p class="character-name">SHILOH (CONT&#x27;D)</p><p class="dialogue-line">Hello. We are the waiting staff assigned to deliver pizzas to the prisoners but this girl (points to Britney who waves) Forgot where we&#x27;re supposed to go. Can you tell me where they&#x27;re being kept?</p><p class="character-name">SKEPTICAL CHEF</p><p class="dialogue-line">Prisoners? There are no more prisoners.</p><p class="action-line">This alarms Shiloh, but she hides it.</p><p class="character-name">SHILOH</p><p class="dialogue-line">(covering, turns to Britney) You got our orders wrong too! You always do this!</p><p class="character-name">BRITNEY</p><p class="dialogue-line">I&#x27;m sorry!</p><p class="character-name">SKEPTICAL CHEF</p><p class="dialogue-line">You waiters are terrible at your jobs! This is why the Head Chef is replacing you!</p><p class="character-name">SHILOH</p><p class="dialogue-line">My apologies.</p><p class="action-line">He gives them a suspicious look and leaves.</p><p class="character-name">SHILOH (CONT&#x27;D)</p><p class="dialogue-line">There&#x27;s a head chef that&#x27;s in charge. I bet he&#x27;s the mastermind behind all this.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Is it the chef in the red hat that we&#x27;ve been seeing?</p><p class="character-name">SHILOH</p><p class="dialogue-line">I don&#x27;t think so.</p><p class="action-line">Just then, a hurried chef comes running through. As he runs by he hurriedly tells them.</p><p class="character-name">ENTHUSIASTIC CHEF 1</p><p class="dialogue-line">Hurry! The Head Chef has called for everyone to meet in the main hall for an announcement! We&#x27;ve figured out the recipe! We can start the final phase!</p><p class="action-line">He continues on.</p><p class="character-name">SHILOH</p><p class="dialogue-line">(to the others) The recipe? What does that mean the pizza&#x27;s going to do?</p><p class="action-line">He continues on, when through another door, the Chef that just left comes back with a whole group.</p><p class="character-name">SKEPTICAL CHEF</p><p class="dialogue-line">There! Those are the imposters. Get them!</p><p class="action-line">The group turns to them, busted. Out steps Judah and Liam, now dressed in chefs outfits. Judah has a mustache on.</p><p class="character-name">JUDAH/LIAM</p><p class="dialogue-line">Yes, sir.</p><p class="action-line">The two charge.</p><p class="character-name">SHILOH</p><p class="dialogue-line">Mind control...</p><p class="action-line">Liam chases.</p><p class="character-name">SHILOH (CONT&#x27;D)</p><p class="dialogue-line">Run!!</p><p class="action-line">End Act III</p><p class="action-line">Judah lingers behind with the other chefs.</p><p class="character-name">JUDAH</p><p class="dialogue-line">(with an accent) Get ze girl!</p><p class="character-name">CHEF 3</p><p class="dialogue-line">Wait, we didn&#x27;t tell you to use an accent...</p><p class="character-name">JUDAH</p><p class="dialogue-line">It is a side affect of a mustache being on my face.</p><p class="action-line">They stare at him.</p><p class="character-name">JUDAH (CONT&#x27;D)</p><p class="dialogue-line">It&#x27;s a medical condition. I can&#x27;t explain it.</p><p class="character-name">CHEF GUARD</p><p class="dialogue-line">Are all of the mind controlled humans going to be like this?</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">INT. Hallway</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Hallway #13</div><ul class="props-items"><li>Pizza cart w/ pizza boxes</li><li>Regular pizzeria set dec</li><li>Judah &amp; Liam now dressed as chefs &amp; Judah w/ mustache</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-49">
+      <div class="scene-header">
+        <span class="scene-num">Sc 49</span>
+        <span class="scene-title">INT. HEAD CHEF OFFICE</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">The six chefs bring Phineas in to the Head Chef&#x27;s office. A desk sits with a leather chair behind it. They hold Phineas in front of the desk. The chair spins around to reveal the Head Chef. He doesn&#x27;t bother with disguising himself much except for the outfit. His teeth are pointy with red eyes and red markings on his face.</p><p class="character-name">HEAD CHEF</p><p class="dialogue-line">Phineas Quinton, son of raelo lord Marius of the Denarian raelo. Aren&#x27;t I a lucky guy?</p><p class="action-line">Phineas looks at him: this isn&#x27;t good.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Head Chef Office</div><ul class="props-items"><li>Desk</li><li>Leather chair</li><li>Mind control pizza</li><li>Pizza to pie head chef in the face with</li><li>Vial to cure the mind control</li><li>Chef kid drawing from locker</li><li>Britney in chef outfit, no mustache</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-52">
+      <div class="scene-header">
+        <span class="scene-num">Sc 52</span>
+        <span class="scene-title">INT. HEAD CHEF OFFICE</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">The Head Chef stands up and walks out from behind his office addressing the held Phineas.</p><p class="character-name">HEAD CHEF</p><p class="dialogue-line">I am going to mind control you and send you back to your father as my minion. You will destroy your own raelo from the inside.</p><p class="action-line">A guard chef brings out a mind control pizza and gets a slice out to force feed Phineas. He struggles against the men holding him. They start to bring the pizza to his face as the Head Chef grins his pointy tooth smile.</p><p class="action-line">Suddenly, Shiloh bursts through a door with the Sous Chef behind the Head Chef&#x27;s desk.</p><p class="character-name">HEAD CHEF (CONT&#x27;D)</p><p class="dialogue-line">(grins) Two raelos under my control is even better than one.</p><p class="action-line">Shiloh steps up and pies him in the face with her mind control pizza. Everyone gasps. The head chef&#x27;s head slumps down. The guards turn to Shiloh! The Sous Chef raises his hands to stop them.</p><p class="character-name">SOUS CHEF</p><p class="dialogue-line">No!</p><p class="action-line">Everyone stands in silence as the Head Chef raises his head, now aware. Shiloh and Sous Chef look at him, trying to read if it worked or not...</p><p class="character-name">GUARD CHEF</p><p class="dialogue-line">Boss?</p><p class="action-line">The Head Chef turns and looks at him with a blank stare.</p><p class="character-name">SHILOH</p><p class="dialogue-line">I command you to cancel the commercials from going out.</p><p class="action-line">Beat. Is he going to obey her?</p><p class="character-name">HEAD CHEF</p><p class="dialogue-line">Cancel the commercials!</p><p class="action-line">One of the chefs behind his desk runs off to do so.</p><p class="character-name">SHILOH</p><p class="dialogue-line">You keep a cure, don&#x27;t you?</p><p class="character-name">HEAD CHEF</p><p class="dialogue-line">Yes.</p><p class="character-name">SHILOH</p><p class="dialogue-line">Go get it.</p><p class="action-line">He walks over to his desk and gets a vial from the drawer and brings it to Shiloh. She takes it.</p><p class="character-name">SHILOH (CONT&#x27;D)</p><p class="dialogue-line">Go lock yourself in a jail cell.</p><p class="action-line">He nods and walks off.</p><p class="character-name">SHILOH (CONT&#x27;D)</p><p class="dialogue-line">This&#x27;ll be for Judah, Liam and anyone else they&#x27;ve used their recipe on.</p><p class="character-name">CHEF</p><p class="dialogue-line">But the plan...</p><p class="action-line">Shiloh pulls out one of their drawings.</p><p class="character-name">SHILOH</p><p class="dialogue-line">You&#x27;re already home.</p><p class="action-line">They take it and look at it. She&#x27;s right.</p><p class="character-name">FRIENDLY CHEF 2</p><p class="dialogue-line">So... We don&#x27;t have to mind control anybody?</p><p class="character-name">COMMERCIAL CHEF 1</p><p class="dialogue-line">Or make any commercials?</p><p class="character-name">SHILOH</p><p class="dialogue-line">Nope. What would you like to do?</p><p class="action-line">The chefs are all lost.</p><p class="character-name">FRIENDLY CHEF 1</p><p class="dialogue-line">I&#x27;d like to make pizzas.</p><p class="character-name">SHILOH</p><p class="dialogue-line">(wincing at their pizza idea) Um... Fine. You&#x27;ll have a lot of learning to do.</p><p class="action-line">Britney pops out from behind the Sous Chef.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">I took care of that!</p><p class="character-name">SHILOH</p><p class="dialogue-line">Britney? How???</p><p class="character-name">FLASHBACK TO:</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Head Chef Office</div><ul class="props-items"><li>Desk</li><li>Leather chair</li><li>Mind control pizza</li><li>Pizza to pie head chef in the face with</li><li>Vial to cure the mind control</li><li>Chef kid drawing from locker</li><li>Britney in chef outfit, no mustache</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-48">
+      <div class="scene-header">
+        <span class="scene-num">Sc 48</span>
+        <span class="scene-title">INT. HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">The chefs escort Phineas down a hallway. Shiloh follows at a distance.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Hallway #15</div><ul class="props-items"><li>Regular hallway set dec</li><li>Guarded door for head chef&#x27;s office</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-9">
+      <div class="scene-header">
+        <span class="scene-num">Sc 9</span>
+        <span class="scene-title">INT. PIZZERIA HALLWAY</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">In the hall, two men dressed as chefs with very large and distinct mustaches that look almost impossible walk and talk. The look is almost goofy and they have a happy disposition to them, like the friendly chefs you see in commercials. They look like normal friendly humans otherwise.</p><p class="character-name">FRIENDLY CHEF 1</p><p class="dialogue-line">I heard we have new prisoners to test out the most recent pizza on!</p><p class="character-name">FRIENDLY CHEF 2</p><p class="dialogue-line">Oh goody! I&#x27;m glad we don&#x27;t have to eat them now. We saw what the last pizza did to Zeek!</p><p class="character-name">FRIENDLY CHEF 1</p><p class="dialogue-line">He still thinks he&#x27;s a lawn chair.</p><p class="action-line">They pass by the room the group is hiding in.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <ul class="shot-list"><li>Gimbal Wide Walk and Talk</li><li>Gimbal Chef 1 Single</li><li>Gimbal Chef 2 Single</li></ul>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizzeria Hall #3</div><ul class="props-items"><li>Carts / extra set dec</li><li>Door</li><li>Vent</li><li>Doorway looking into room #2 w/ furniture that will be stacked</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-16">
+      <div class="scene-header">
+        <span class="scene-num">Sc 16</span>
+        <span class="scene-title">INT. KITCHEN</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Two chefs, also with crazy mustaches different than the previous men&#x27;s, pull out a pizza from the oven. It&#x27;s a burnt black circle literally on fire. They hold it in front of them for a beat. We think they&#x27;re going to be disappointed.</p><p class="character-name">ENTHUSIASTIC CHEF 1</p><p class="dialogue-line">It&#x27;s perfect!!</p><p class="character-name">ENTHUSIASTIC CHEF 2</p><p class="dialogue-line">Oh my croissant, we did it!!</p><p class="action-line">Just then, SOUS CHEF, 30s with, you guessed it, a ridiculous mustache, barges into the room.</p><p class="character-name">SOUS CHEF</p><p class="dialogue-line">What are you two doing?! That pizza has candy corn and toothpaste on it!</p><p class="character-name">ENTHUSIASTIC CHEF 1</p><p class="dialogue-line">What do you mean? Those are things that humans like. See?</p><p class="action-line">They then click play and look to a video screen as it plays a video tutorial given by the HEAD CHEF, but his face is in shadow, and we only see the silhouette of him talking.</p><p class="character-name">HEAD CHEF</p><p class="dialogue-line">After applying the given secret ingredients, we have to make it taste good to humans. Humans are dummies, and enjoy things like cat food, fresh cut grass, and toothpaste.</p><p class="action-line">They pause the video and turn to him holding their burnt disk, now no longer on fire.</p><p class="character-name">ENTHUSIASTIC CHEF 2</p><p class="dialogue-line">We nailed it!</p><p class="character-name">SOUS CHEF</p><p class="dialogue-line">(shocked and scared) Well, the head chef does know best. Ok then, we&#x27;ll do it his way. (then) And what is with your mustaches?! That is not what a chef mustache looks like!</p><p class="character-name">ENTHUSIASTIC CHEF 1</p><p class="dialogue-line">(with the normal looking mustache) Oh, I thought it made me look charming.</p><p class="action-line">RIP! The sous chef rips it off, and replaces with a giant ridiculous mustache, similar to theirs.</p><p class="character-name">SOUS CHEF</p><p class="dialogue-line">That is a chef mustache.</p><p class="character-name">ENTHUSIASTIC CHEF 1</p><p class="dialogue-line">Really? You sure?</p><p class="character-name">SOUS CHEF</p><p class="dialogue-line">Yes it is. See?</p><p class="action-line">He holds up a can of tomato sauce with a cartoon chef on it with his exact extreme mustache.</p><p class="character-name">ENTHUSIASTIC CHEF 1</p><p class="dialogue-line">Oh my gosh, you&#x27;re right. That&#x27;s amazing.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">INT. Kitchen (on-location)</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizza Kitchen SET UP #1</div><ul class="props-items"><li>Pizza</li><li>Oven</li><li>Oven mit</li><li>Bring a TV with Blue screen on the screen</li><li>Candy corn</li><li>Tooth paste</li><li>Remote</li><li>Secret ingredient</li><li>Burnt Pizza disk</li><li>Chefs&#x27; starter mustache that goes into giant regular one</li><li>Tomato sauce can w/ chef w/ the giant mustache that matches</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+    </div><div class="day-section" id="day-6"><h2 class="day-title">Thursday, July 9</h2>
+    <div class="day-summary">
+      <div class="day-meta">Load In 8:00 AM &middot; ON-LOCATION AT KITCHEN</div>
+      <table class="summary-table">
+        <thead><tr>
+          <th>Scene</th><th>Location</th><th>Time</th><th>Cast</th><th>Shots</th><th>Props / Notes</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+                <td class="col-scene">Sc 22</td>
+                <td class="col-loc">INT. KITCHEN</td>
+                <td class="col-time">9:00-11:00</td>
+                <td class="col-cast">Britney, Bg Chefs, Crying Chef, Judah, Liam Double, Phineas, Shiloh, Friendly Chef 2</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Chefs sing Shanty</td>
+            </tr><tr>
+                <td class="col-scene">Sc 38</td>
+                <td class="col-loc">INT. KITCHEN</td>
+                <td class="col-time">11:00-12:30</td>
+                <td class="col-cast">Britney, Crying Chef, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Dressed as waiters</td>
+            </tr><tr class="break-row"><td colspan="6">LUNCH 12:30-1:30</td></tr><tr>
+                <td class="col-scene">Sc 47</td>
+                <td class="col-loc">INT. PIZZERIA KITCHEN</td>
+                <td class="col-time">1:30-3:00</td>
+                <td class="col-cast">Chefs, Enthusiastic Chef 2, Phineas, Shiloh</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Pizza explosion, they grab Phineas</td>
+            </tr><tr>
+                <td class="col-scene">Sc 53</td>
+                <td class="col-loc">INT. ROOM</td>
+                <td class="col-time">3:00-3:30</td>
+                <td class="col-cast">Britney, Chefs</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">Britney teaches</td>
+            </tr><tr>
+                <td class="col-scene">Sc 25</td>
+                <td class="col-loc">INT. ROOM</td>
+                <td class="col-time">3:30-4:00</td>
+                <td class="col-cast">Determined Chef, Sous Chef</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">We must make pizzas!</td>
+            </tr><tr>
+                <td class="col-scene">Sc 16</td>
+                <td class="col-loc">INT. KITCHEN</td>
+                <td class="col-time">4:00-5:30</td>
+                <td class="col-cast">Enthusiastic Chef 1, Enthusiastic Chef 2, Sous Chef</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">We have to make pizza that tastes good to humans</td>
+            </tr><tr>
+                <td class="col-scene">Sc 18</td>
+                <td class="col-loc">INT. KITCHEN</td>
+                <td class="col-time">5:30-5:45</td>
+                <td class="col-cast">Enthusiastic Chef 1, Enthusiastic Chef 2, Sous Chef</td>
+                <td class="col-shots">No shots listed</td>
+                <td class="col-props">We have to learn to make pizzas!</td>
+            </tr><tr class="break-row"><td colspan="6">LOAD OUT 6:00-7:00</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="breakdown-section">
+      
+    <div class="scene-block" id="scene-22">
+      <div class="scene-header">
+        <span class="scene-num">Sc 22</span>
+        <span class="scene-title">INT. KITCHEN</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">The kitchen is full of working chefs, all with ridiculous mustaches. One of them is working on a pizza and then starts to loudly sing the start to a deep-voiced working chanty.</p><p class="character-name">SINGING CHEF</p><p class="dialogue-line">Badddum bad dum! (note: lyrics to song will sent in separate doc for all chefs)</p><p class="action-line">The other chefs flawlessly echo out and join in with the next line. Shiloh and the others look out in surprise at what&#x27;s happening around them, as they all sing out this working chanty song that they all know, and work to the rhythm of, as the music joins in making it it&#x27;s own needle drop moment. It&#x27;s beautiful and impressive. The lyrics are about making pizza and working to earn your home.</p><p class="action-line">As they sing, a chef dumps a container of bubble gum onto his pizza, then pulls out a container of mustard and squirts it on the pizza. Shiloh sneaks behind him, then Liam and Phineas, Judah and Britney.</p><p class="action-line">A different chef sings as he puts a weird powder on his pizza labeled &#x27;test 37&#x27; as the group sneaks behind him, the last powder explodes on the pizza.</p><p class="action-line">A chef works going between stations. Shiloh waits to time it to be able to cross around him. He turns and the group quickly goes.</p><p class="action-line">A chef nervously tries a pizza as his buddy looks on next to him. He takes a bite, then passes out cold.</p><p class="character-name">FRIENDLY CHEF 2</p><p class="dialogue-line">Nope! Next recipe!</p><p class="action-line">A chef puts pineapple on a pizza as we see the tops of the crouched group go through. Judah stops and rises up from the counter across from him.</p><p class="character-name">JUDAH</p><p class="dialogue-line">Under no circumstances are you to ever put pineapple on a pizza again. Do you understand me?</p><p class="character-name">CRYING CHEF</p><p class="dialogue-line">Yes sir.</p><p class="character-name">JUDAH</p><p class="dialogue-line">Good.</p><p class="action-line">He shrinks back down under the counter.</p><p class="action-line">At the door to the exit, Shiloh makes it through. A chef walks by. Then Liam, Phineas, Britney and Judah make it through.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Kitchen #2</div><ul class="props-items"><li>Pizzas</li><li>Pizza trays</li><li>Kitchen set dec</li><li>Container of bubble gum</li><li>Mustard bottle</li><li>Weird powder labeled test 37</li><li>Crashpad</li><li>Pineapple</li><li>Pizza ingredients</li><li>Pizza toppings</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-38">
+      <div class="scene-header">
+        <span class="scene-num">Sc 38</span>
+        <span class="scene-title">INT. KITCHEN OR PIZZERIA ROOM</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">The three of them are now dressed as waiters. Phineas and Shiloh grab pizzas onto a cart. Britney pauses at chef at a work station, crying on the table. Britney winces like &quot;eesh&quot;, and goes to close the door, as he cries louder. She winces at his cries. Then goes to close again, and he cries louder. Britney rolls her eyes in a sigh, as if hearing Judah&#x27;s voice to help them. She begrudgingly walks over.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Why are you crying sad pizza man?</p><p class="character-name">CRYING CHEF</p><p class="dialogue-line">I can&#x27;t get my pizza to taste good!</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Ok, well, for starters, why is your sauce orange?</p><p class="character-name">CRYING CHEF</p><p class="dialogue-line">I put carrots in it.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Who told you to do that?!</p><p class="character-name">CRYING CHEF</p><p class="dialogue-line">It&#x27;s what I&#x27;m being told humans like!</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Ok! Going out on a limb here... If you could make a pizza that YOU thought tasted good, what would you add?</p><p class="character-name">CRYING CHEF</p><p class="dialogue-line">Well, I guess I would make the crust out of cookie dough.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Welp, I tried.</p><p class="character-name">CRYING CHEF</p><p class="dialogue-line">And the sauce out of ice cream, and cotton candy as the toppings!</p><p class="action-line">Britney pauses and looks to him, now serious &amp; intrigued.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">You have my attention.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">INT. Kitchen (on-location?)</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Kitchen or Pizzeria Room #7</div><ul class="props-items"><li>Pizzas put on cart</li><li>Cart</li><li>Pizza boxes</li><li>Table</li><li>Door</li><li>Pizza w/ orange sauce &amp; carrots on it</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-47">
+      <div class="scene-header">
+        <span class="scene-num">Sc 47</span>
+        <span class="scene-title">INT. PIZZERIA KITCHEN</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Phineas walks with the box with the explosive pizza. He sees Shiloh waiting for him across the way. He lights up at seeing her. A chef sees Phineas.</p><p class="character-name">ENTHUSIASTIC CHEF 2</p><p class="dialogue-line">Oh good! We need every pizza we can get! The first delivery of pizzas is going out tonight!</p><p class="action-line">He goes to take the pizza box from Phineas who steps back from him.</p><p class="character-name">PHINEAS</p><p class="dialogue-line">This pizza is a delivery for her.</p><p class="action-line">Shiloh looks alarmed.</p><p class="character-name">ENTHUSIASTIC CHEF 2</p><p class="dialogue-line">What do you mean?? Every pizza has to go!</p><p class="character-name">PHINEAS</p><p class="dialogue-line">No, trust me. You wouldn&#x27;t like this pizza.</p><p class="character-name">ENTHUSIASTIC CHEF 2</p><p class="dialogue-line">Nonsense! There is no such thing as a pizza I wouldn&#x27;t like. Give me the Pizza!</p><p class="character-name">PHINEAS</p><p class="dialogue-line">Sir this pizza has to go to her!</p><p class="character-name">ENTHUSIASTIC CHEF 2</p><p class="dialogue-line">GIMME DA PIZZA!</p><p class="action-line">He jerks the pizza from him, setting off a marinara explosion. Covering the chef in pizza sauce and cheese. The entire kitchen stops to turn and stare at Phineas.</p><p class="character-name">ENTHUSIASTIC CHEF 2 (CONT&#x27;D)</p><p class="dialogue-line">(Breaking down) Mama Miaaa! GET HIM!</p><p class="action-line">They grab Phineas! He gives a concerned look to Shiloh as he gets taken off. Shiloh follows after him!</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizzeria Kitchen</div><ul class="props-items"><li>Phineas exploding pizza box</li><li>Marinara explosion</li><li>Pizza sauce</li><li>Cheese</li><li>Rest of the kitchen set dec</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-53">
+      <div class="scene-header">
+        <span class="scene-num">Sc 53</span>
+        <span class="scene-title">INT. ROOM</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">In a room, Britney is wearing a chef disguise with mustache, and has set up a projector and power point presentation, as she gives her talk to a group of chefs.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">Cat food is never to be put on pizzas. Everything this guy said: Garbage!</p><p class="action-line">She points to a picture of the head chef.</p><p class="character-name">ALL CHEFS</p><p class="dialogue-line">Ooooohhhh!</p><p class="action-line">She holds up the desert candy pizza from earlier.</p><p class="character-name">BRITNEY</p><p class="dialogue-line">You&#x27;ve got some weird stuff going on in this cookie pizza, but I like it! It&#x27;s your style.</p><p class="character-name">FLASH FORWARD</p><p class="character-name">TO:</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Room #11</div><ul class="props-items"><li>Britney wearing a chef disguise w/ mustache</li><li>Projector set up</li><li>Powerpoint</li><li>A picture of the head chef</li><li>Desert pizza (cookie dough crust, ice cream sauce, cotton candy topping)</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-25">
+      <div class="scene-header">
+        <span class="scene-num">Sc 25</span>
+        <span class="scene-title">INT. ROOM</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">The Sous Chef poor over recipes on a table.</p><p class="character-name">SOUS CHEF</p><p class="dialogue-line">Why can&#x27;t we get this recipe right?!</p><p class="character-name">DETERMINED CHEF</p><p class="dialogue-line">All it does is pass people out.</p><p class="character-name">SOUS CHEF</p><p class="dialogue-line">And it tastes TERRIBLE.</p><p class="character-name">DETERMINED CHEF</p><p class="dialogue-line">But more importantly..it&#x27;s not doing what the boss wants.</p><p class="character-name">SOUS CHEF</p><p class="dialogue-line">True.</p><p class="character-name">DERTERMINED CHEF</p><p class="dialogue-line">We&#x27;re close. I can feel it.</p><p class="character-name">SOUS CHEF</p><p class="dialogue-line">We must make pizzas!</p><p class="action-line">He looks back over the recipes.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">No shots listed</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Room #3</div><ul class="props-items"><li>Tons of recipes</li><li>Tables</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-16">
+      <div class="scene-header">
+        <span class="scene-num">Sc 16</span>
+        <span class="scene-title">INT. KITCHEN</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">Two chefs, also with crazy mustaches different than the previous men&#x27;s, pull out a pizza from the oven. It&#x27;s a burnt black circle literally on fire. They hold it in front of them for a beat. We think they&#x27;re going to be disappointed.</p><p class="character-name">ENTHUSIASTIC CHEF 1</p><p class="dialogue-line">It&#x27;s perfect!!</p><p class="character-name">ENTHUSIASTIC CHEF 2</p><p class="dialogue-line">Oh my croissant, we did it!!</p><p class="action-line">Just then, SOUS CHEF, 30s with, you guessed it, a ridiculous mustache, barges into the room.</p><p class="character-name">SOUS CHEF</p><p class="dialogue-line">What are you two doing?! That pizza has candy corn and toothpaste on it!</p><p class="character-name">ENTHUSIASTIC CHEF 1</p><p class="dialogue-line">What do you mean? Those are things that humans like. See?</p><p class="action-line">They then click play and look to a video screen as it plays a video tutorial given by the HEAD CHEF, but his face is in shadow, and we only see the silhouette of him talking.</p><p class="character-name">HEAD CHEF</p><p class="dialogue-line">After applying the given secret ingredients, we have to make it taste good to humans. Humans are dummies, and enjoy things like cat food, fresh cut grass, and toothpaste.</p><p class="action-line">They pause the video and turn to him holding their burnt disk, now no longer on fire.</p><p class="character-name">ENTHUSIASTIC CHEF 2</p><p class="dialogue-line">We nailed it!</p><p class="character-name">SOUS CHEF</p><p class="dialogue-line">(shocked and scared) Well, the head chef does know best. Ok then, we&#x27;ll do it his way. (then) And what is with your mustaches?! That is not what a chef mustache looks like!</p><p class="character-name">ENTHUSIASTIC CHEF 1</p><p class="dialogue-line">(with the normal looking mustache) Oh, I thought it made me look charming.</p><p class="action-line">RIP! The sous chef rips it off, and replaces with a giant ridiculous mustache, similar to theirs.</p><p class="character-name">SOUS CHEF</p><p class="dialogue-line">That is a chef mustache.</p><p class="character-name">ENTHUSIASTIC CHEF 1</p><p class="dialogue-line">Really? You sure?</p><p class="character-name">SOUS CHEF</p><p class="dialogue-line">Yes it is. See?</p><p class="action-line">He holds up a can of tomato sauce with a cartoon chef on it with his exact extreme mustache.</p><p class="character-name">ENTHUSIASTIC CHEF 1</p><p class="dialogue-line">Oh my gosh, you&#x27;re right. That&#x27;s amazing.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">INT. Kitchen (on-location)</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizza Kitchen SET UP #1</div><ul class="props-items"><li>Pizza</li><li>Oven</li><li>Oven mit</li><li>Bring a TV with Blue screen on the screen</li><li>Candy corn</li><li>Tooth paste</li><li>Remote</li><li>Secret ingredient</li><li>Burnt Pizza disk</li><li>Chefs&#x27; starter mustache that goes into giant regular one</li><li>Tomato sauce can w/ chef w/ the giant mustache that matches</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scene-block" id="scene-18">
+      <div class="scene-header">
+        <span class="scene-num">Sc 18</span>
+        <span class="scene-title">INT. KITCHEN</span>
+      </div>
+      <div class="scene-body">
+        <div class="script-col">
+          <p class="action-line">The Sous Chef addresses his two men.</p><p class="character-name">SOUS CHEF</p><p class="dialogue-line">Keep up the good disguises. But I&#x27;m sending you back to basic on the pizzas.</p><p class="character-name">ENTHUSIASTIC CHEFS</p><p class="dialogue-line">Awwww...</p><p class="character-name">SOUS CHEF</p><p class="dialogue-line">Don&#x27;t &quot;aw&quot; me! We have got to learn how to make pizza!</p><p class="action-line">The chefs shuffle out.</p>
+        </div>
+        <div class="side-col">
+          <div class="shots-section">
+            <div class="side-label">Shots</div>
+            <div class="shot-note">INT. Kitchen (on-location)</div>
+          </div>
+          <div class="props-section">
+            <div class="side-label">Props</div>
+            <div class="props-list"><div class="props-group"><div class="props-group-header">Pizza Kitchen SET UP #1</div><ul class="props-items"><li>Pizza</li><li>Oven</li><li>Oven mit</li><li>Bring a TV with Blue screen on the screen</li><li>Candy corn</li><li>Tooth paste</li><li>Remote</li><li>Secret ingredient</li><li>Burnt Pizza disk</li><li>Chefs&#x27; starter mustache that goes into giant regular one</li><li>Tomato sauce can w/ chef w/ the giant mustache that matches</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+    </div>
+</div>
+<script>
+function showDay(index) {
+  document.querySelectorAll('.day-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('day-' + index).classList.add('active');
+  document.getElementById('nav-' + index).classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
